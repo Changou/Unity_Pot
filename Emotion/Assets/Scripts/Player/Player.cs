@@ -62,16 +62,25 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        Jump();
-        Dash();
-        Attack();
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            Jump();
+        }
+        if (Input.GetMouseButtonDown(1)) 
+        {
+            Dash();
+        }
+        if(Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
     }
 
-    void Attack()
+    void Attack() //공격
     {
         if (weaponState == WEAPON.NORMAL)
         {
-            if (Input.GetMouseButtonDown(0) && !isAttack)
+            if (!isAttack)
             {
                 if (isMove && !isJump)
                 {
@@ -88,7 +97,7 @@ public class Player : MonoBehaviour
             mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             angle = Mathf.Atan2(mouse.y - bow.position.y, mouse.x - bow.position.x)* Mathf.Rad2Deg;
             bow.rotation = Quaternion.AngleAxis(angle , Vector3.forward);
-            if(Input.GetMouseButtonDown(0) && !isShot)
+            if(!isShot)
             {
                 GameObject arrowObj = Instantiate(arrow);
                 arrowObj.transform.SetParent(bow.GetChild(0));
@@ -100,14 +109,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator ShotDelay(float delay)
+    IEnumerator ShotDelay(float delay) //발사체 간격
     {
         isShot = true;
         yield return new WaitForSeconds(delay);
         isShot = false;
     }
 
-    IEnumerator AttackDelay()
+    IEnumerator AttackDelay() //공격 간격
     {
         yield return new WaitForSeconds(0.2f);
         isAttack = true;
@@ -116,9 +125,9 @@ public class Player : MonoBehaviour
         anim.SetBool("isMove", false);
     }
 
-    void Dash()
+    void Dash() //대쉬
     {
-        if (Input.GetMouseButtonDown(1) && !isDash)
+        if (!isDash)
         {
             isDash = true;
             speed = dashPower;
@@ -127,7 +136,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator FinishDash()
+    IEnumerator FinishDash() //대쉬 간격
     {
         yield return new WaitForSeconds(dashTime);
         speed = defaultSpeed;
@@ -136,9 +145,9 @@ public class Player : MonoBehaviour
         isDash = false;
     }
 
-    void Jump()
+    void Jump() //점프
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isJump)
+        if (!isJump)
         {
             rb.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
             isJump = true;
@@ -160,7 +169,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void Move() //이동
     {
         
         if (Input.GetKeyDown(KeyCode.D) && !isRight)
