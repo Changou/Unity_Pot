@@ -2,23 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+public enum WEAPON
+{
+    NORMAL,
+    SWORD,
+    ARROW,
+    WAND
+}
 public class PlayerInfo : MonoBehaviour
 {
-    [Header("능력치")]
+    [Header("플레이어")]
     [SerializeField] int hp;
     [SerializeField] int atk;
+    [SerializeField] float speed;
+    [SerializeField] float jumpPower;
+    [SerializeField] float dashPower;
+    [SerializeField] float dashTime;
+    [SerializeField] Vector2 colOffset;
+    [SerializeField] float attackDelay;
+    [SerializeField] WEAPON weaponState;
 
-    Slider hpSlider;
+    public float _Speed => speed;
+    public float _JumpPower => jumpPower;
+    public float _DashTime => dashTime;
+    public Vector2 _ColOffset => colOffset;
+    public float _AttackDelay => attackDelay;
+    public WEAPON _WeaponState => weaponState;
+
+    float defalutSpeed;
 
     private void Awake()
     {
-        hpSlider = GameObject.Find("HpSlider").GetComponent<Slider>();
+        defalutSpeed = speed;
     }
 
-    private void Start()
+    public void OnDash()
     {
-        hpSlider.value = hp;
+        speed = dashPower;
+    }
+    public void OffDash()
+    {
+        speed = defalutSpeed;
     }
 
 }
