@@ -269,7 +269,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -594094145, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -453,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &130576544
 Transform:
   m_ObjectHideFlags: 0
@@ -3371,7 +3371,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300014, guid: 03dd1ef6fb163214c9e1ac0242dab3ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3686,8 +3686,8 @@ GameObject:
   - component: {fileID: 1506224365}
   - component: {fileID: 1506224366}
   - component: {fileID: 1506224367}
+  - component: {fileID: 1506224368}
   - component: {fileID: 1506224369}
-  - component: {fileID: 1506224370}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3830,28 +3830,8 @@ MonoBehaviour:
   arrow: {fileID: 6498085671144853952, guid: 26ccb497ab76e704fa647e59fda2cfb3, type: 3}
   shotDelay: 0.3
   longSword: {fileID: 1412696873}
---- !u!114 &1506224369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1506224362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9346a3b9257b6034884736c952c2c51e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 100
-  atk: 0
-  speed: 5
-  jumpPower: 9
-  dashPower: 40
-  dashTime: 0.08
-  attackDelay: 0.4
-  weaponState: 2
---- !u!70 &1506224370
-CapsuleCollider2D:
+--- !u!61 &1506224368
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3882,7 +3862,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-<<<<<<< HEAD
   m_Offset: {x: -0.08, y: -0.045}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -4006,11 +3985,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-=======
-  m_Offset: {x: -0.08, y: -0.04}
-  m_Size: {x: 0.17, y: 0.35}
-  m_Direction: 0
->>>>>>> a412c2011baa8c7a3bd62a027e1778b4d504ee8f
 --- !u!1 &1551989798
 GameObject:
   m_ObjectHideFlags: 0

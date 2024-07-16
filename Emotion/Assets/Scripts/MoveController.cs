@@ -29,8 +29,6 @@ public class MoveController : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
 
-
-
         leftClick = Input.GetMouseButtonDown(0) ? true : false;
         rightClick = Input.GetMouseButtonDown(1) ? true : false;
         buttonF = Input.GetKeyDown(KeyCode.F) ? true : false;

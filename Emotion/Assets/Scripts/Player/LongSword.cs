@@ -14,8 +14,19 @@ public class LongSword : MonoBehaviour
 
     public float _AttackDelay => attackDelay;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
     public void Attack()
     {
         anim.SetTrigger("Attack");
+    }
+    public void Direction(float x)
+    {
+        if (x < 0) trans.rotation = Quaternion.Euler(0, 180f, 0);
+        else if (x > 0) trans.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
