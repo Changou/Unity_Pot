@@ -63,7 +63,10 @@ public class Player : MonoBehaviour
         {
             Dash();
         }
-        Falling();
+        if (isJump)
+        {
+            anim.SetFloat("jumpVel", rb.velocity.y);
+        }
     }
 
     void HorizontalMoving() //이동
@@ -71,38 +74,19 @@ public class Player : MonoBehaviour
         moveX = MoveController.i._MoveX;
         movement = new Vector3(moveX, 0, 0);
         movement.Normalize();
-
-        transform.position += movement * playerInfo._Speed * Time.deltaTime;
-
-        if(playerInfo._WeaponState == WEAPON.SWORD)
+        
+        if (moveX != 0) //방향이 입력되었을 때
         {
-            longSword.Direction(moveX);
-        }
-
-        if (moveX != 0)
-        {            
-            if (moveX < 0)
+            if((moveX > 0 && transform.localScale.x < 0) || (moveX < 0 && transform.localScale.x >0)) //입력된 방향과 캐릭터의 방향이 다를 시
             {
-                sr.flipX = true;
-                col.offset = new Vector2(playerInfo._ColOffset.x * -1, playerInfo._ColOffset.y);             
+                transform.localScale = new Vector3(transform.localScale.x * (-1), transform.localScale.y, 1); // 방향전환
             }
-            else if (moveX > 0)
-            {
-                sr.flipX = false;
-                col.offset = playerInfo._ColOffset;
-            }
-            if(!isJump)
+            if(rb.velocity.y == 0) //점프 중이면
                 anim.SetBool("isMove", true);
         }
         else anim.SetBool("isMove", false);
-    }
 
-    void Falling() //떨어질 때
-    {
-        if (rb.velocity.y < 0)
-        {
-            anim.SetBool("falling", true);
-        }
+        transform.position += movement * playerInfo._Speed * Time.deltaTime;
     }
 
     void Attack() //공격
@@ -128,20 +112,9 @@ public class Player : MonoBehaviour
                 StartCoroutine(AttackDelay(longSword._AttackDelay));
             }
         }
-        else if(playerInfo._WeaponState == WEAPON.ARROW)
+        else if(playerInfo._WeaponState == WEAPON.ARROW) //bow 스크립트 분활
         {
-            mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            angle = Mathf.Atan2(mouse.y - bow.position.y, mouse.x - bow.position.x)* Mathf.Rad2Deg;
-            bow.rotation = Quaternion.AngleAxis(angle , Vector3.forward);
-            if(!isShot)
-            {
-                GameObject arrowObj = Instantiate(arrow);
-                arrowObj.transform.SetParent(bow.GetChild(0));
-                arrowObj.transform.localPosition = Vector3.zero;
-                arrowObj.transform.rotation = bow.rotation;
-                arrowObj.transform.SetParent(null);
-                StartCoroutine(ShotDelay(shotDelay));
-            }
+            
         }
         
     }
@@ -151,11 +124,6 @@ public class Player : MonoBehaviour
         isShot = true;
         yield return new WaitForSeconds(delay);
         isShot = false;
-    }
-
-    public void AttackOver()
-    {
-        
     }
 
     IEnumerator AttackDelay(float delay) //공격 간격
@@ -194,7 +162,6 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.up * playerInfo._JumpPower, ForceMode2D.Impulse);
             isJump = true;
             anim.SetBool("isJump", true);
-            anim.SetBool("isMove", false);
         }
     }
 
@@ -204,7 +171,6 @@ public class Player : MonoBehaviour
         {
             isJump = false;
             anim.SetBool("isJump", false);
-            anim.SetBool("falling", false);
         }
     }
 }
