@@ -130,18 +130,7 @@ public class Player : MonoBehaviour
         }
         else if(playerInfo._WeaponState == WEAPON.ARROW)
         {
-            mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            angle = Mathf.Atan2(mouse.y - bow.position.y, mouse.x - bow.position.x)* Mathf.Rad2Deg;
-            bow.rotation = Quaternion.AngleAxis(angle , Vector3.forward);
-            if(!isShot)
-            {
-                GameObject arrowObj = Instantiate(arrow);
-                arrowObj.transform.SetParent(bow.GetChild(0));
-                arrowObj.transform.localPosition = Vector3.zero;
-                arrowObj.transform.rotation = bow.rotation;
-                arrowObj.transform.SetParent(null);
-                StartCoroutine(ShotDelay(shotDelay));
-            }
+            
         }
         
     }
