@@ -18,14 +18,12 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] float jumpPower;
     [SerializeField] float dashPower;
     [SerializeField] float dashTime;
-    [SerializeField] Vector2 colOffset;
     [SerializeField] float attackDelay;
     [SerializeField] WEAPON weaponState;
 
     public float _Speed => speed;
     public float _JumpPower => jumpPower;
     public float _DashTime => dashTime;
-    public Vector2 _ColOffset => colOffset;
     public float _AttackDelay => attackDelay;
     public WEAPON _WeaponState => weaponState;
 
