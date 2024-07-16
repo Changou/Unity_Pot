@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Arrow : MonoBehaviour
 {
-    [Header("È­»ì")]
     [SerializeField] int atk;
     [SerializeField] float speed;
 
@@ -17,4 +17,5 @@ public class Arrow : MonoBehaviour
         rb.AddForce(transform.right * speed, ForceMode2D.Impulse);
         Destroy(gameObject, 2f);
     }
+
 }

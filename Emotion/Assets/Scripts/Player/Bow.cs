@@ -5,8 +5,15 @@ using UnityEngine.UIElements;
 
 public class Bow : MonoBehaviour
 {
+    [Header("È­»ì")]
+    [SerializeField] GameObject prefab;
+    [SerializeField] float shotDelay;
+
     Vector2 mouse;
     float angle;
+
+
+    bool isShot = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +29,31 @@ public class Bow : MonoBehaviour
         angle += transform.parent.localScale.x < 0 ? 180 : 0;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    public void Shot()
+    {
+        if (!isShot)
+        {
+            GameObject arrow = Instantiate(prefab);
+            arrow.transform.SetParent(transform.GetChild(0));
+            arrow.transform.localPosition = Vector3.zero;
+            if(transform.parent.localScale.x < 0)
+            {
+
+                arrow.transform.rotation = Quaternion.AngleAxis(angle - 180f, Vector3.forward);
+            }
+            else
+                arrow.transform.rotation = transform.rotation;
+            arrow.transform.SetParent(null);
+            StartCoroutine(ShotDelay());
+        }
+    }
+
+    IEnumerator ShotDelay()
+    {
+        isShot = true;
+        yield return new WaitForSeconds(shotDelay);
+        isShot = false;
     }
 }
