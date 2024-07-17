@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(!isAttack)
             HorizontalMoving();
         if (MoveController.i._MoveY > 0)

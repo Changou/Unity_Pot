@@ -1870,6 +1870,7 @@ GameObject:
   - component: {fileID: 581786828}
   - component: {fileID: 581786827}
   - component: {fileID: 581786829}
+  - component: {fileID: 581786830}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -2010,6 +2011,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34, y: 0.36}
   m_EdgeRadius: 0
+--- !u!114 &581786830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581786825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e8b660b423ae840bd37e0fd3a83148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UpgradeUI: {fileID: 1088973461}
 --- !u!1 &685839902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,7 +2644,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 934055061}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1088973461}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &934055061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3629,7 +3655,7 @@ GameObject:
   - component: {fileID: 1506224369}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
