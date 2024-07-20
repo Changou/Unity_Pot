@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class Smith : MonoBehaviour
 {
-    [Header("[°­È­ UI]"), SerializeField] GameObject _UpgradeUI;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && MoveController.i._ButtonF)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            _UpgradeUI.SetActive(true);
-            
+            if (MoveController.i._ButtonF)
+            {
+                UIManager._Inst.Show_UI(UIManager.UI.ENFORCE);
+                GameManager._Inst.Pause();
+            }
         }
     }
 }

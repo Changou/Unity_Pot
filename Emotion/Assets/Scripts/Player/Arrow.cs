@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] int atk;
     [SerializeField] float speed;
 
     Rigidbody2D rb;

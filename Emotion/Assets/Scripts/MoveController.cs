@@ -8,6 +8,7 @@ public class MoveController : MonoBehaviour
 
     float moveX;
     float moveY;
+    float mouseWheel;
 
     bool leftClick = false;
     bool rightClick = false;
@@ -15,6 +16,8 @@ public class MoveController : MonoBehaviour
 
     public float _MoveX => moveX;
     public float _MoveY => moveY;
+    public float _MouseWheel => mouseWheel;
+
     public bool _LeftClick => leftClick;
     public bool _RightClick => rightClick;
     public bool _ButtonF => buttonF;
@@ -26,8 +29,10 @@ public class MoveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
+        mouseWheel = Input.GetAxis("Mouse ScrollWheel");
 
         leftClick = Input.GetMouseButtonDown(0) ? true : false;
         rightClick = Input.GetMouseButtonDown(1) ? true : false;

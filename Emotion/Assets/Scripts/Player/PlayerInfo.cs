@@ -23,6 +23,8 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] float attackDelay;
     [SerializeField] WEAPON weaponState;
 
+
+    public int _HP => hp;
     public float _Speed => speed;
     public float _JumpPower => jumpPower;
     public float _DashTime => dashTime;
@@ -43,6 +45,17 @@ public class PlayerInfo : MonoBehaviour
     public void OffDash()
     {
         speed = defalutSpeed;
+    }
+
+    public void WeaponUp()
+    {
+        weaponState++;
+        if(weaponState == WEAPON.MAX) weaponState = WEAPON.NORMAL;
+    }
+    public void WeaponDown()
+    {
+        if (weaponState == WEAPON.NORMAL) weaponState = WEAPON.MAX;
+        weaponState--;
     }
 
 }

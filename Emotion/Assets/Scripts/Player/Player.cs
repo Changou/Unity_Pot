@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     [Header("대검 정보")]
     [SerializeField] LongSword longSword;
 
+    [Header("완드")]
+    [SerializeField] Wand wand;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -40,33 +43,48 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager._Inst._IsPause)
+        {
+            if (!isAttack)
+                HorizontalMoving();
+            if (MoveController.i._MoveY > 0)
+            {
+                Jump();
+            }
+            if (MoveController.i._LeftClick)
+            {
+                Attack();
+            }
+            if (MoveController.i._RightClick)
+            {
+                Dash();
+            }
+            if (isJump)
+            {
+                anim.SetFloat("jumpVel", rb.velocity.y);
+            }
+            WeaponChange();
+        }
+    }
 
-        if(!isAttack)
-            HorizontalMoving();
-        if (MoveController.i._MoveY > 0)
+    void WeaponSwap()
+    {
+        if(MoveController.i._MouseWheel > 0)
         {
-            Jump();
+            playerInfo.WeaponUp();
         }
-        if (MoveController.i._LeftClick)
+        else if(MoveController.i._MouseWheel < 0)
         {
-            Attack();
+            playerInfo.WeaponDown();
         }
-        if (MoveController.i._RightClick) 
-        {
-            Dash();
-        }
-        if (isJump)
-        {
-            anim.SetFloat("jumpVel", rb.velocity.y);
-        }
-        WeaponChange();
     }
 
     void WeaponChange()
     {
-        for(int i = 1; i < (int)WEAPON.MAX; i++)
+        WeaponSwap();
+        for(int i = 0; i < (int)WEAPON.MAX; i++)
         {
-            transform.GetChild(i - 1).gameObject.SetActive(i == (int)playerInfo._WeaponState ? true : false);
+            transform.GetChild(i).gameObject.SetActive(i == (int)playerInfo._WeaponState ? true : false);
         }
     }
 
@@ -116,6 +134,10 @@ public class Player : MonoBehaviour
         else if(playerInfo._WeaponState == WEAPON.ARROW)
         {
             bow.Shot();
+        }
+        else
+        {
+            wand.Shot();
         }
     }
 

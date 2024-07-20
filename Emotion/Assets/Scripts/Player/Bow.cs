@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Bow : MonoBehaviour
+public class Bow : WeaponBase
 {
     [Header("È­»ì")]
     [SerializeField] GameObject prefab;
-    [SerializeField] float shotDelay;
 
     Vector2 mouse;
     float angle;
@@ -31,7 +30,7 @@ public class Bow : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    public void Shot()
+    public virtual void Shot()
     {
         if (!isShot)
         {
@@ -53,7 +52,7 @@ public class Bow : MonoBehaviour
     IEnumerator ShotDelay()
     {
         isShot = true;
-        yield return new WaitForSeconds(shotDelay);
+        yield return new WaitForSeconds(_delay);
         isShot = false;
     }
 }
