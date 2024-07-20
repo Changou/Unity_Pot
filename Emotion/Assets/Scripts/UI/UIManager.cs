@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     { 
         HP, 
         ENFORCE,
+        WEAPONICON,
 
         MAX
     }
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
         HideAll();
 
         Show_UI(UI.HP);
+        Show_UI(UI.WEAPONICON);
     }
 
     public void Show_UI(UI _type)
