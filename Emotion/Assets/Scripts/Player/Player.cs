@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     [Header("완드")]
     [SerializeField] Wand wand;
 
+    Coroutine _delayCor;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -36,9 +38,13 @@ public class Player : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-    }
+    //IEnumerator Start()
+    //{
+    //    if (!GameManager._Inst._IsPause) { 
+    //    }
+
+    //    yield return StartCoroutine(Start());
+    //}
 
     // Update is called once per frame
     void Update()
@@ -120,7 +126,9 @@ public class Player : MonoBehaviour
                 }
                 else
                     anim.SetTrigger("Attack");
-                StartCoroutine(AttackDelay(playerInfo._AttackDelay));
+
+                if (_delayCor == null)
+                    _delayCor = StartCoroutine(AttackDelay(playerInfo._AttackDelay));
             }
         }
         else if(playerInfo._WeaponState == WEAPON.SWORD)
@@ -128,7 +136,8 @@ public class Player : MonoBehaviour
             if (!isAttack)
             {
                 longSword.Attack();
-                StartCoroutine(AttackDelay(longSword._AttackDelay));
+                if(_delayCor == null)
+                    _delayCor = StartCoroutine(AttackDelay(longSword._AttackDelay));
             }
         }
         else if(playerInfo._WeaponState == WEAPON.ARROW)
@@ -147,7 +156,8 @@ public class Player : MonoBehaviour
         isAttack = true;
         anim.SetBool("isMove", false);
         yield return new WaitForSeconds(delay);
-        isAttack = false; 
+        isAttack = false;
+        _delayCor = null;
     }
 
     void Dash() //대쉬

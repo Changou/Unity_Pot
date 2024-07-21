@@ -9,26 +9,23 @@ public class Monster : MonoBehaviour
     [SerializeField] int atk;
     [SerializeField] float speed;
 
-    bool _isDelay = false;
-    Vector2 velo = Vector2.zero;
+    Rigidbody2D rb;
+    public int nextMove;
 
-    private void Update()
+    private void Awake()
     {
-        Moving();
+        rb = GetComponent<Rigidbody2D>();
+        Invoke("Think", 2);
     }
 
-    void Moving()
+    private void FixedUpdate()
     {
-        if (!_isDelay)
-        {
-            
-            StartCoroutine(Delay());
-        }
+        rb.velocity = new Vector2(nextMove, rb.velocity.y);
     }
-    IEnumerator Delay()
+    void Think()
     {
-        _isDelay = true;
-        yield return new WaitForSeconds(1f);
-        _isDelay = false;
+        nextMove = Random.Range(-1, 2);
+
+        Invoke("Think", 2);
     }
 }

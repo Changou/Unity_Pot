@@ -37,6 +37,7 @@ public class UIPanel_Enforce : UIBase
     public void EnforceClose()
     {
         UIManager._Inst.Closed_UI(UIManager.UI.ENFORCE);
+        UIManager._Inst.Show_UI(UIManager.UI.STATUS);
         GameManager._Inst.UnPause();
     }
 }

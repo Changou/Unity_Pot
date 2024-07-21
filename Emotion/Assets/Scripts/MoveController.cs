@@ -29,13 +29,12 @@ public class MoveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
-        mouseWheel = Input.GetAxis("Mouse ScrollWheel");
+        mouseWheel = Input.GetAxisRaw("Mouse ScrollWheel");
 
-        leftClick = Input.GetMouseButtonDown(0) ? true : false;
-        rightClick = Input.GetMouseButtonDown(1) ? true : false;
-        buttonF = Input.GetKeyDown(KeyCode.F) ? true : false;
+        leftClick = Input.GetMouseButtonDown(0);
+        rightClick = Input.GetMouseButtonDown(1);
+        buttonF = Input.GetKeyDown(KeyCode.F);
     }
 }

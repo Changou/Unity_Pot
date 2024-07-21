@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Smith : MonoBehaviour
 {
-    private void OnTriggerStay2D(Collider2D collision)
+    [SerializeField] GameObject _text;
+
+    private void FixedUpdate()
+    {
+        if(_text.activeSelf && MoveController.i._ButtonF)
+        {
+            UIManager._Inst.Show_UI_Only(UIManager.UI.ENFORCE);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (MoveController.i._ButtonF)
-            {
-                UIManager._Inst.Show_UI(UIManager.UI.ENFORCE);
-                GameManager._Inst.Pause();
-            }
+            _text.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _text.SetActive(false);
         }
     }
 }

@@ -9,9 +9,8 @@ public class UIManager : MonoBehaviour
 
     public enum UI 
     { 
-        HP, 
+        STATUS, 
         ENFORCE,
-        WEAPONICON,
 
         MAX
     }
@@ -23,8 +22,20 @@ public class UIManager : MonoBehaviour
         _Inst = this;
         HideAll();
 
-        Show_UI(UI.HP);
-        Show_UI(UI.WEAPONICON);
+        Show_UI(UI.STATUS);
+    }
+
+    public void Show_UI_Only(UI _type)
+    {
+        for(int i = 0; i < (int)UI.MAX; i++)
+        {
+            if(i == (int)_type)
+            {
+                _ui[i].Show(true);
+                continue;
+            }
+            _ui[i].Show(false);
+        }  
     }
 
     public void Show_UI(UI _type)

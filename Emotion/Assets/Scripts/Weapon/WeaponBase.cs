@@ -33,5 +33,6 @@ public class WeaponBase : MonoBehaviour
     public void Enforce()
     {
         _lv++;
+        _exp = 0;
     }
 }
