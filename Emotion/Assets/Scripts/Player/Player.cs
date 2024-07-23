@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
 public class Player : MonoBehaviour
 {
     [Header("플레이어 정보")]
@@ -16,8 +15,9 @@ public class Player : MonoBehaviour
     Animator anim;
 
     bool isJump = false;
-    bool isDash = false;
     bool isAttack = false;
+
+    float _DashTime = 0;
 
     [Header("활")]
     [SerializeField] Bow bow;
@@ -49,27 +49,47 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager._Inst._IsPause)
+        //if (!GameManager._Inst._IsPause)
+        //{
+        //    if (!isAttack)
+        //        HorizontalMoving();
+        //    if (MoveController.i._MoveY > 0)
+        //    {
+        //        Jump();
+        //    }
+        //    if (MoveController.i._LeftClick)
+        //    {
+        //        Attack();
+        //    }
+        //    if (MoveController.i._RightClick)
+        //    {
+        //        Dash();
+        //    }
+        //    if (isJump)
+        //    {
+        //        anim.SetFloat("jumpVel", rb.velocity.y);
+        //    }
+        //    WeaponChange();
+        //}
+
+        if (MoveController.i._LeftClick)
+            Attack();
+        else if (!isAttack)
         {
-            if (!isAttack)
-                HorizontalMoving();
-            if (MoveController.i._MoveY > 0)
+            Dash();
+            HorizontalMoving();
+            if (_DashTime == 0)
             {
-                Jump();
+                if (MoveController.i._MoveY > 0)
+                {
+                    Jump();
+                }
+                if (rb.velocity.y != 0)
+                {
+                    anim.SetFloat("jumpVel", rb.velocity.y);
+                }
+                WeaponChange();
             }
-            if (MoveController.i._LeftClick)
-            {
-                Attack();
-            }
-            if (MoveController.i._RightClick)
-            {
-                Dash();
-            }
-            if (isJump)
-            {
-                anim.SetFloat("jumpVel", rb.velocity.y);
-            }
-            WeaponChange();
         }
     }
 
@@ -117,27 +137,17 @@ public class Player : MonoBehaviour
     void Attack() //공격
     {
         if (playerInfo._WeaponState == WEAPON.NORMAL)
-        {
-            if (!isAttack)
-            {
-                if (MoveController.i._MoveX != 0 && !isJump)
-                {
-                    anim.SetTrigger("MoveAttack");
-                }
-                else
-                    anim.SetTrigger("Attack");
-
-                if (_delayCor == null)
-                    _delayCor = StartCoroutine(AttackDelay(playerInfo._AttackDelay));
-            }
+        {   
+            anim.SetTrigger("Attack");
+            isAttack = true;
         }
         else if(playerInfo._WeaponState == WEAPON.SWORD)
         {
             if (!isAttack)
             {
                 longSword.Attack();
-                if(_delayCor == null)
-                    _delayCor = StartCoroutine(AttackDelay(longSword._AttackDelay));
+                //if(_delayCor == null)
+                //    _delayCor = StartCoroutine(AttackDelay(longSword._AttackDelay));
             }
         }
         else if(playerInfo._WeaponState == WEAPON.ARROW)
@@ -150,34 +160,39 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator AttackDelay(float delay) //공격 간격
+    public void AttackFin()
     {
-        yield return new WaitForSeconds(0.2f);
-        isAttack = true;
-        anim.SetBool("isMove", false);
-        yield return new WaitForSeconds(delay);
         isAttack = false;
-        _delayCor = null;
     }
 
+    //IEnumerator AttackDelay(float delay) //공격 간격
+    //{
+    //    yield return new WaitForSeconds(0.2f);
+    //    isAttack = true;
+    //    anim.SetBool("isMove", false);
+    //    yield return new WaitForSeconds(delay);
+    //    isAttack = false;
+    //    _delayCor = null;
+    //}
     void Dash() //대쉬
     {
-        if (!isDash)
+        if (MoveController.i._RightClick && _DashTime == 0)
         {
-            isDash = true;
             playerInfo.OnDash();
             anim.SetBool("isDash", true);
-            StartCoroutine(FinishDash());
+            _DashTime = playerInfo._DashTime;
         }
-    }
-
-    IEnumerator FinishDash() //대쉬 간격
-    {
-        yield return new WaitForSeconds(playerInfo._DashTime);
-        playerInfo.OffDash();
-        yield return new WaitForSeconds(0.2f);
-        anim.SetBool("isDash", false);
-        isDash = false;
+        else if(_DashTime > 0)
+        {
+            _DashTime -= 1f * Time.deltaTime;
+            Debug.Log(_DashTime);
+        }
+        else if(_DashTime < 0)
+        {
+            _DashTime = 0f;
+            anim.SetBool("isDash", false);
+            playerInfo.OffDash();
+        }
     }
 
     void Jump() //점프
