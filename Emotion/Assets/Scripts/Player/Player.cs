@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
 
-    bool isJump = false;
     bool isAttack = false;
 
     float _DashTime = 0;
@@ -29,66 +28,34 @@ public class Player : MonoBehaviour
     [Header("완드")]
     [SerializeField] Wand wand;
 
-    Coroutine _delayCor;
-
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
-    //IEnumerator Start()
-    //{
-    //    if (!GameManager._Inst._IsPause) { 
-    //    }
-
-    //    yield return StartCoroutine(Start());
-    //}
-
-    // Update is called once per frame
     void Update()
     {
-        //if (!GameManager._Inst._IsPause)
-        //{
-        //    if (!isAttack)
-        //        HorizontalMoving();
-        //    if (MoveController.i._MoveY > 0)
-        //    {
-        //        Jump();
-        //    }
-        //    if (MoveController.i._LeftClick)
-        //    {
-        //        Attack();
-        //    }
-        //    if (MoveController.i._RightClick)
-        //    {
-        //        Dash();
-        //    }
-        //    if (isJump)
-        //    {
-        //        anim.SetFloat("jumpVel", rb.velocity.y);
-        //    }
-        //    WeaponChange();
-        //}
-
-        if (MoveController.i._LeftClick)
-            Attack();
-        else if (!isAttack)
+        if (!GameManager._Inst._IsPause)
         {
-            Dash();
-            HorizontalMoving();
-            if (_DashTime == 0)
+            if (MoveController.i._LeftClick && rb.velocity.y == 0)
+                Attack();
+            else if (!isAttack)
             {
-                if (MoveController.i._MoveY > 0)
+                Dash();
+                HorizontalMoving();
+                if (_DashTime == 0)
                 {
-                    Jump();
+                    if (MoveController.i._MoveY > 0)
+                    {
+                        Jump();
+                    }
+                    if (rb.velocity.y != 0)
+                    {
+                        anim.SetFloat("jumpVel", rb.velocity.y);
+                    }
+                    WeaponChange();
                 }
-                if (rb.velocity.y != 0)
-                {
-                    anim.SetFloat("jumpVel", rb.velocity.y);
-                }
-                WeaponChange();
             }
         }
     }
@@ -143,12 +110,7 @@ public class Player : MonoBehaviour
         }
         else if(playerInfo._WeaponState == WEAPON.SWORD)
         {
-            if (!isAttack)
-            {
-                longSword.Attack();
-                //if(_delayCor == null)
-                //    _delayCor = StartCoroutine(AttackDelay(longSword._AttackDelay));
-            }
+            longSword.Attack();
         }
         else if(playerInfo._WeaponState == WEAPON.ARROW)
         {
@@ -165,15 +127,6 @@ public class Player : MonoBehaviour
         isAttack = false;
     }
 
-    //IEnumerator AttackDelay(float delay) //공격 간격
-    //{
-    //    yield return new WaitForSeconds(0.2f);
-    //    isAttack = true;
-    //    anim.SetBool("isMove", false);
-    //    yield return new WaitForSeconds(delay);
-    //    isAttack = false;
-    //    _delayCor = null;
-    //}
     void Dash() //대쉬
     {
         if (MoveController.i._RightClick && _DashTime == 0)
@@ -185,7 +138,6 @@ public class Player : MonoBehaviour
         else if(_DashTime > 0)
         {
             _DashTime -= 1f * Time.deltaTime;
-            Debug.Log(_DashTime);
         }
         else if(_DashTime < 0)
         {
@@ -197,10 +149,9 @@ public class Player : MonoBehaviour
 
     void Jump() //점프
     {
-        if (!isJump)
+        if (rb.velocity.y == 0)
         {
             rb.AddForce(Vector3.up * playerInfo._JumpPower, ForceMode2D.Impulse);
-            isJump = true;
             anim.SetBool("isJump", true);
         }
     }
@@ -209,7 +160,6 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground")) 
         {
-            isJump = false;
             anim.SetBool("isJump", false);
         }
     }

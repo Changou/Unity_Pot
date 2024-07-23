@@ -7,11 +7,12 @@ public class Smith : MonoBehaviour
 {
     [SerializeField] GameObject _text;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(_text.activeSelf && MoveController.i._ButtonF)
         {
             UIManager._Inst.Show_UI_Only(UIManager.UI.ENFORCE);
+            GameManager._Inst.Pause();
         }
     }
 
