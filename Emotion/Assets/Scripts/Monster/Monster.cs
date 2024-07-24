@@ -11,21 +11,57 @@ public class Monster : MonoBehaviour
 
     Rigidbody2D rb;
     public int nextMove;
+    Animator _anim;
+
+    [Header("µÙ∑π¿Ã"), SerializeField] float _delay;
+    float _delayTime;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Invoke("Think", 2);
+        _anim = GetComponent<Animator>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        if (hp <= 0) return;
+
+        Think();
         rb.velocity = new Vector2(nextMove, rb.velocity.y);
     }
     void Think()
     {
-        nextMove = Random.Range(-1, 2);
+        if (_delayTime <= 0)
+        {
+            nextMove = Random.Range(-1, 2);
+            _delayTime = _delay;
+        }
+        else
+            Delay();
+    }
 
-        Invoke("Think", 2);
+    void Delay()
+    {
+        _delayTime -= 1f * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon"))
+        {
+            --hp;
+            if (hp <= 0)
+            {
+                _anim.SetTrigger("Died");
+                transform.GetComponent<Collider2D>().enabled = false;
+            }
+            else
+                _anim.SetTrigger("Damage");
+        }
+    }
+
+    public void Died()
+    {
+        Destroy(gameObject);
     }
 }

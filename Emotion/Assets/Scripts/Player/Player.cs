@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
 
     float _DashTime = 0;
 
+    [Header("검")]
+    [SerializeField] Collider2D _AttackPoint;
+
     [Header("활")]
     [SerializeField] Bow bow;
     [SerializeField] float shotDelay;
@@ -32,30 +35,28 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        _AttackPoint.enabled = false;
     }
 
     void Update()
     {
-        if (!GameManager._Inst._IsPause)
+        if (!GameManager._Inst._IsPause && !isAttack)
         {
             if (MoveController.i._LeftClick && rb.velocity.y == 0)
                 Attack();
-            else if (!isAttack)
+            Dash();
+            HorizontalMoving();
+            if (_DashTime == 0)
             {
-                Dash();
-                HorizontalMoving();
-                if (_DashTime == 0)
+                if (MoveController.i._MoveY > 0)
                 {
-                    if (MoveController.i._MoveY > 0)
-                    {
-                        Jump();
-                    }
-                    if (rb.velocity.y != 0)
-                    {
-                        anim.SetFloat("jumpVel", rb.velocity.y);
-                    }
-                    WeaponChange();
+                    Jump();
                 }
+                if (rb.velocity.y != 0)
+                {
+                    anim.SetFloat("jumpVel", rb.velocity.y);
+                }
+                WeaponChange();
             }
         }
     }
@@ -122,9 +123,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnAttack()
+    {
+        _AttackPoint.enabled = true;
+    }
+
     public void AttackFin()
     {
         isAttack = false;
+        _AttackPoint.enabled = false;
     }
 
     void Dash() //대쉬
