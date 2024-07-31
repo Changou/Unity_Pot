@@ -14,10 +14,13 @@ public class D_Monster : MonoBehaviour
 
     [Header("몬스터"), SerializeField] M_STATE _state;
     [SerializeField] float _ActDelay = 3f;
+    [SerializeField] float _speed = 2f;
 
     [Header("콜라이더")] 
     [SerializeField] CircleCollider2D _cirCollider;
     [SerializeField] CapsuleCollider2D _capCollider;
+
+    [Header("타겟")] Transform _target;
 
     Animator _anim;
 
@@ -39,6 +42,22 @@ public class D_Monster : MonoBehaviour
         {
             AIMove();
         }
+        else if(_state == M_STATE.CHASE)
+        {
+
+        }
+    }
+
+    void Chase()
+    {
+        Vector3 dir = _target.position - transform.position;
+        if(dir.x < 0)
+        {
+            Vector3 tmp = transform.localScale;
+            tmp.x = -transform.localScale.x;
+        }
+
+        transform.position += dir.normalized * _speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,11 +68,8 @@ public class D_Monster : MonoBehaviour
             {
                 _cirCollider.enabled = false;
                 _capCollider.enabled = true;
+                _target = collision.transform;
                 _state = M_STATE.CHASE;
-            }
-            else if (_capCollider.enabled)
-            {
-                Debug.Log("데미지");
             }
         }
     }
@@ -74,7 +90,7 @@ public class D_Monster : MonoBehaviour
         if (_state == M_STATE.MOVE)
         {
             _time -= 1 * Time.deltaTime;
-            transform.position += (transform.localScale.x > 0 ? Vector3.left : Vector3.right)* Time.deltaTime;
+            transform.position += (transform.localScale.x > 0 ? Vector3.left : Vector3.right) * Time.deltaTime;
             if (_time <= 0)
             {
                 _state = M_STATE.IDLE;
