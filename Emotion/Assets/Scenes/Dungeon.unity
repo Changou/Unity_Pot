@@ -1112,6 +1112,7 @@ GameObject:
   - component: {fileID: 1830313296}
   - component: {fileID: 1830313298}
   - component: {fileID: 1830313297}
+  - component: {fileID: 1830313299}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Monster
@@ -1133,6 +1134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   _ActDelay: 3
+  _speed: 2
   _cirCollider: {fileID: 0}
   _capCollider: {fileID: 0}
 --- !u!212 &1830313294
@@ -1293,6 +1295,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!50 &1830313299
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830313292}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1858289540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1336,7 @@ GameObject:
   - component: {fileID: 1858289544}
   m_Layer: 0
   m_Name: TileMap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

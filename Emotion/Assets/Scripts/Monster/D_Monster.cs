@@ -23,6 +23,7 @@ public class D_Monster : MonoBehaviour
     [Header("Å¸°Ù")] Transform _target;
 
     Animator _anim;
+    Rigidbody2D _rb;
 
     float _time = 0;
 
@@ -32,6 +33,7 @@ public class D_Monster : MonoBehaviour
         _anim = GetComponent<Animator>();
         _cirCollider = GetComponent<CircleCollider2D>();
         _capCollider = GetComponent<CapsuleCollider2D>();
+        _rb = GetComponent<Rigidbody2D>();
         _capCollider.enabled = false;
     }
 
@@ -44,19 +46,30 @@ public class D_Monster : MonoBehaviour
         }
         else if(_state == M_STATE.CHASE)
         {
-
+            if (Vector3.Distance(_target.position, transform.position) > 7f)
+            {
+                _state = M_STATE.IDLE;
+                _time = _ActDelay;
+                _cirCollider.enabled = true;
+                _capCollider.enabled = false;
+                return;
+            }
+            Chase();
+            _anim.SetBool("Move", true);
         }
     }
 
     void Chase()
     {
         Vector3 dir = _target.position - transform.position;
-        if(dir.x < 0)
+        dir.y = 0; dir.z = 0;
+        if((dir.x > 0 && transform.localScale.x > 0) ||
+            (dir.x < 0 && transform.localScale.x < 0))
         {
             Vector3 tmp = transform.localScale;
-            tmp.x = -transform.localScale.x;
+            tmp.x *= -1;
+            transform.localScale = tmp;
         }
-
         transform.position += dir.normalized * _speed * Time.deltaTime;
     }
 
@@ -74,17 +87,6 @@ public class D_Monster : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            _state = M_STATE.IDLE;
-            _time = _ActDelay;
-            _cirCollider.enabled = true;
-            _capCollider.enabled = false;
-        }
-    }
-
     private void AIMove()
     {
         if (_state == M_STATE.MOVE)
@@ -95,9 +97,9 @@ public class D_Monster : MonoBehaviour
             {
                 _state = M_STATE.IDLE;
                 _time = _ActDelay;
-                _anim.SetBool("Move", false);
+                return;
             }
-
+            _anim.SetBool("Move", true);
         }
         else if(_state == M_STATE.IDLE)
         {
@@ -107,8 +109,9 @@ public class D_Monster : MonoBehaviour
                 _state = M_STATE.MOVE;
                 _time = _ActDelay;
                 transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1);
-                _anim.SetBool("Move", true);
+                return;
             }
+            _anim.SetBool("Move", false);
         }
     }
 }
