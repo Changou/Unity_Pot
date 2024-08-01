@@ -16,14 +16,11 @@ public class D_Monster : MonoBehaviour
     [SerializeField] float _ActDelay = 3f;
     [SerializeField] float _speed = 2f;
 
-    [Header("콜라이더")] 
-    [SerializeField] CircleCollider2D _cirCollider;
-    [SerializeField] CapsuleCollider2D _capCollider;
-
     [Header("타겟")] Transform _target;
 
+    [SerializeField] float _detectionDis = 5f;
+
     Animator _anim;
-    Rigidbody2D _rb;
 
     float _time = 0;
 
@@ -31,10 +28,7 @@ public class D_Monster : MonoBehaviour
     {
         _state = M_STATE.IDLE;
         _anim = GetComponent<Animator>();
-        _cirCollider = GetComponent<CircleCollider2D>();
-        _capCollider = GetComponent<CapsuleCollider2D>();
-        _rb = GetComponent<Rigidbody2D>();
-        _capCollider.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -46,17 +40,15 @@ public class D_Monster : MonoBehaviour
         }
         else if(_state == M_STATE.CHASE)
         {
-            if (Vector3.Distance(_target.position, transform.position) > 7f)
-            {
-                _state = M_STATE.IDLE;
-                _time = _ActDelay;
-                _cirCollider.enabled = true;
-                _capCollider.enabled = false;
-                return;
-            }
             Chase();
             _anim.SetBool("Move", true);
         }
+    }
+
+    public void SetState(M_STATE state, Transform target = null)
+    {
+        _state = state;
+        _target = target;
     }
 
     void Chase()
@@ -73,19 +65,6 @@ public class D_Monster : MonoBehaviour
         transform.position += dir.normalized * _speed * Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (_cirCollider.enabled)
-            {
-                _cirCollider.enabled = false;
-                _capCollider.enabled = true;
-                _target = collision.transform;
-                _state = M_STATE.CHASE;
-            }
-        }
-    }
 
     private void AIMove()
     {
