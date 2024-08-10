@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossJumpAttack : MonoBehaviour
+public class BossJumpAttack : Pattern
 {
     [SerializeField] float _jumpPower;
     [SerializeField] Transform _target;
     [SerializeField] float _rushPower;
 
     Rigidbody2D _rb;
-    
+
+    Vector3 dir;
+
+    bool isAttack = false;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponentInParent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         JumpAttack();
+        isAttack = false;
     }
 
     private void Update()
     {
-        if(_rb.velocity.y < 0)
+        if(_rb.velocity.y < 0 && !isAttack)
         {
             Attack();
         }
@@ -32,21 +35,23 @@ public class BossJumpAttack : MonoBehaviour
 
     void Attack()
     {
-        Vector3 dir = _target.position - transform.position;
+        dir = _target.position - transform.position;
+        isAttack = true;
         _rb.AddForce(dir * _rushPower, ForceMode2D.Impulse);
     }
 
     void JumpAttack()
     {
+        
         _rb.AddForce(Vector3.up * _jumpPower, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("d");
             _rb.velocity = Vector3.zero;
+            PatternOn(false);
         }
     }
 }

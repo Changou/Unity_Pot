@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845188758338678867}
   - component: {fileID: 7623602320844157342}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5763647013978853516}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LongSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8033739155248044127}
   - component: {fileID: 7580645848082041830}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6610129150774127035}
   - component: {fileID: 5095812403303935004}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8894468679330822032}
   - component: {fileID: 8476748676871867420}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackPoint
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4221003573580783533}
   - component: {fileID: 461702073785089748}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WandSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604684610957999938}
   - component: {fileID: 392191613128156804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BowSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 1788025537062872574}
   - component: {fileID: 1057599165764680427}
   - component: {fileID: 4194361586150190920}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 324822905935729327}
   - component: {fileID: 4611651648815808796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 1679653035896311202}
   - component: {fileID: 2254822271819058886}
   - component: {fileID: 3626767387799497420}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
