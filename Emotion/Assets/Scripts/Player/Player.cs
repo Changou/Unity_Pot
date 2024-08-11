@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : LivingEntity
 {
     [Header("플레이어 정보")]
     [SerializeField] PlayerInfo playerInfo;
@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rb;
     Animator anim;
+    Collider2D _coll;
 
     bool isAttack = false;
 
@@ -31,15 +32,24 @@ public class Player : MonoBehaviour
     [Header("완드")]
     [SerializeField] Wand wand;
 
+    [SerializeField] float _rayDist;
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        _coll = GetComponent<Collider2D>();
         _AttackPoint.enabled = false;
+        
+    }
+    private void Start()
+    {
+        rb.gravityScale = 0f;
+        _coll.isTrigger = true;
     }
 
     void Update()
     {
+
         if (!GameManager._Inst._IsPause && !isAttack)
         {
             if (MoveController.i._LeftClick && rb.velocity.y == 0)
@@ -50,14 +60,29 @@ public class Player : MonoBehaviour
             {
                 if (MoveController.i._MoveY > 0)
                 {
+                    rb.gravityScale = 1.5f;
                     Jump();
                 }
                 if (rb.velocity.y != 0)
                 {
                     anim.SetFloat("jumpVel", rb.velocity.y);
+
                 }
                 WeaponChange();
             }
+        }
+    }
+
+    RaycastHit2D rayHit;
+
+    private void FixedUpdate()
+    {
+        Debug.DrawRay(rb.position, Vector2.down * _rayDist, new Color(0, 1, 0));
+        rayHit = Physics2D.Raycast(rb.position, Vector2.down, _rayDist, LayerMask.GetMask("Ground"));
+        if (rb.velocity.y < -3f && rayHit.collider != null) 
+        {
+            rb.gravityScale = 0f;
+            _coll.isTrigger = false;
         }
     }
 
@@ -165,9 +190,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground")) 
+        if (collision.collider.CompareTag("Ground"))
         {
             anim.SetBool("isJump", false);
+            _coll.isTrigger = true;
         }
     }
 }

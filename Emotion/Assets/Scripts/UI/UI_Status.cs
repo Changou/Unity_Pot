@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_Status : UIBase
 {
     [Header("플레이어 정보")]
+    [SerializeField] LivingEntity _playerHp;
     [SerializeField] PlayerInfo _playerInfo;
     [SerializeField] Slider hp;
 
@@ -13,9 +14,15 @@ public class UI_Status : UIBase
     [SerializeField] Sprite[] _weaponImgs;
     [SerializeField] Image _weaponIcon;
 
-    private void FixedUpdate()
+    private void Awake()
     {
-        hp.value = _playerInfo._HP;
+        hp.maxValue = _playerHp._startingHealth;
+        hp.value = _playerHp.Health;
+    }
+
+    private void Update()
+    {
+        hp.value = _playerHp.Health;
         Setting();
     }
     void Setting()

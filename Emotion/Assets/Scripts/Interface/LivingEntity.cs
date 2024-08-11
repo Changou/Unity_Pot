@@ -11,6 +11,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public bool IsDead {  get; protected set; }
     public event Action OnDeath;
 
+    [SerializeField] SpriteRenderer _sprite;
+
+    Coroutine _cor;
+
     protected virtual void OnEnable()
     {
         IsDead = false;
@@ -31,7 +35,23 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
         Health -= damage;
 
+        if (_cor == null)
+            _cor = StartCoroutine(DamageColor());
+        else
+        {
+            StopCoroutine(_cor);
+            _cor = StartCoroutine(DamageColor());
+        }
+
         if (Health <= 0f)
             Die();
+    }
+
+    IEnumerator DamageColor()
+    {
+        Color tmpcolor = _sprite.color;
+        _sprite.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        _sprite.color = tmpcolor;
     }
 }

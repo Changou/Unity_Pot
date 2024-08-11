@@ -14,7 +14,6 @@ public enum WEAPON
 public class PlayerInfo : MonoBehaviour
 {
     [Header("플레이어")]
-    [SerializeField] int hp;
     [SerializeField] int atk;
     [SerializeField] float speed;
     [SerializeField] float jumpPower;
@@ -23,8 +22,6 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] float attackDelay;
     [SerializeField] WEAPON weaponState;
 
-
-    public int _HP => hp;
     public float _Speed => speed;
     public float _JumpPower => jumpPower;
     public float _DashTime => dashTime;

@@ -6,7 +6,10 @@ public class BossRogic : LivingEntity
 {
     [SerializeField] float _skillDelay = 2f;
 
-    [Header("º¸½ºÆÐÅÏ"), SerializeField] Pattern[] _pattern;
+    [Header("ë³´ìŠ¤ íŒ¨í„´ ì •ë³´"), SerializeField] Pattern[] _pattern;
+
+    [SerializeField] float _damageDelay;
+    float _lastDamage;
 
     bool isDelay = false;
 
@@ -30,7 +33,6 @@ public class BossRogic : LivingEntity
             if (!isDelay)
             {
                 int ran = Random.Range(0, 6);
-                Debug.Log(ran);
                 switch (ran)
                 {
                     case 0:
@@ -55,4 +57,16 @@ public class BossRogic : LivingEntity
         yield return new WaitForSeconds(_skillDelay);
         isDelay = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IDamageable player = collision.GetComponent<IDamageable>();
+
+        if (player != null)
+        {
+            player.OnDamage(10f);
+        }
+    }
+
+
 }

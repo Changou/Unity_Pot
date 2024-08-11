@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\uBAA8\uD5D8\uAC00\uC758 \uAC80"
-  _atk: 0
+  _atk: 10
   _exp: 50
   _lv: 0
   _wType: 0
@@ -201,6 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8894468679330822032}
   - component: {fileID: 8476748676871867420}
+  - component: {fileID: 3913279591285512810}
   m_Layer: 10
   m_Name: AttackPoint
   m_TagString: Weapon
@@ -258,6 +259,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.06}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &3913279591285512810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810732517692473920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4212dc78508024aa72dad07647175d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 7623602320844157342}
 --- !u!1 &2098588403724057300
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +794,7 @@ MonoBehaviour:
   shotDelay: 0.3
   longSword: {fileID: 1057599165764680427}
   wand: {fileID: 7580645848082041830}
+  _rayDist: 1.2
 --- !u!61 &2254822271819058886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -809,10 +824,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08, y: -0.045}
+  m_Offset: {x: -0.08, y: -0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
