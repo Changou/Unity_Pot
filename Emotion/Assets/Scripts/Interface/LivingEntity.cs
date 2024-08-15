@@ -33,13 +33,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         if (IsDead) return;
 
-        Health -= damage;
+        
 
         if (_cor == null)
-            _cor = StartCoroutine(DamageColor());
-        else
         {
-            StopCoroutine(_cor);
+            Health -= damage;
             _cor = StartCoroutine(DamageColor());
         }
 
@@ -51,7 +49,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         Color tmpcolor = _sprite.color;
         _sprite.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         _sprite.color = tmpcolor;
+        _cor = null;
     }
 }

@@ -38,9 +38,9 @@ public class BossRogic : LivingEntity
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         _pattern[0].PatternOn(true);
                         break;
-                    case 3:
                     case 4:
                     case 5:
                         _pattern[1].PatternOn(true);
@@ -59,6 +59,16 @@ public class BossRogic : LivingEntity
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IDamageable player = collision.GetComponent<IDamageable>();
+
+        if (player != null)
+        {
+            player.OnDamage(10f);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         IDamageable player = collision.GetComponent<IDamageable>();
 
