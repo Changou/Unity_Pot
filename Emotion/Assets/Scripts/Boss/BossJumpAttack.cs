@@ -7,6 +7,8 @@ public class BossJumpAttack : Pattern
     [SerializeField] float _jumpPower;
     [SerializeField] Transform _target;
     [SerializeField] float _rushPower;
+    [SerializeField] GameObject _arrow;
+    [SerializeField] float _omenDelay = 1f;
 
     Rigidbody2D _rb;
 
@@ -21,8 +23,8 @@ public class BossJumpAttack : Pattern
 
     private void OnEnable()
     {
-        JumpAttack();
         isAttack = false;
+        StartCoroutine(Omen());
     }
 
     private void Update()
@@ -31,6 +33,14 @@ public class BossJumpAttack : Pattern
         {
             Attack();
         }
+    }
+
+    IEnumerator Omen()
+    {
+        _arrow.SetActive(true);
+        yield return new WaitForSeconds(_omenDelay);
+        _arrow.SetActive(false);
+        JumpAttack();
     }
 
     void Attack()
@@ -42,7 +52,6 @@ public class BossJumpAttack : Pattern
 
     void JumpAttack()
     {
-        
         _rb.AddForce(Vector3.up * _jumpPower, ForceMode2D.Impulse);
     }
 

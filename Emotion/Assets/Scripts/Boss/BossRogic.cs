@@ -9,7 +9,8 @@ public class BossRogic : LivingEntity
     [Header("보스 패턴 정보"), SerializeField] Pattern[] _pattern;
 
     [SerializeField] float _damageDelay;
-    float _lastDamage;
+
+    [SerializeField] Transform _target;
 
     bool isDelay = false;
 
@@ -24,6 +25,19 @@ public class BossRogic : LivingEntity
     private void Start()
     {
         StartCoroutine(Think());
+    }
+
+    private void Update()
+    {
+        Direction();
+    }
+
+    void Direction()
+    {
+        Vector3 dir = _target.position - transform.position;
+
+        Vector3 scale = new Vector3(dir.x > 0 ? -1 : 1, 1, 1);
+        transform.localScale = scale;
     }
 
     IEnumerator Think()
