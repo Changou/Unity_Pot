@@ -7,6 +7,7 @@ public class Player : LivingEntity
 {
     [Header("플레이어 정보")]
     [SerializeField] PlayerInfo playerInfo;
+    [SerializeField] Transform _myTrans;
 
     float moveX;
     Vector3 movement = new Vector3();
@@ -33,6 +34,10 @@ public class Player : LivingEntity
     [SerializeField] Wand wand;
 
     [SerializeField] float _rayDist;
+    [SerializeField] float _rayDistWall;
+
+    float _stopMove = 1f;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -73,17 +78,24 @@ public class Player : LivingEntity
         }
     }
 
-    RaycastHit2D rayHit;
+    RaycastHit2D _rayHitGround;
+    RaycastHit2D _rayHitWall;
 
     private void FixedUpdate()
     {
         Debug.DrawRay(rb.position, Vector2.down * _rayDist, new Color(0, 1, 0));
-        rayHit = Physics2D.Raycast(rb.position, Vector2.down, _rayDist, LayerMask.GetMask("Ground"));
-        if (rb.velocity.y < -3f && rayHit.collider != null) 
+        _rayHitGround = Physics2D.Raycast(rb.position, Vector2.down, _rayDist, LayerMask.GetMask("Ground"));
+        if (rb.velocity.y < -3f && _rayHitGround.collider != null) 
         {
             rb.gravityScale = 0f;
             _coll.isTrigger = false;
         }
+
+        Debug.DrawRay(rb.position, _myTrans.localScale.x * Vector2.right * _rayDistWall, new Color(0,1,0));
+        _rayHitWall = Physics2D.Raycast(rb.position, _myTrans.localScale.x * Vector2.right, _rayDistWall, LayerMask.GetMask("Wall"));
+
+        if (_rayHitWall.collider != null) { _stopMove = 0f; }
+        else _stopMove = 1f;
     }
 
     void WeaponSwap()
@@ -115,16 +127,16 @@ public class Player : LivingEntity
 
         if (moveX != 0)
         {
-            if ((moveX > 0 && transform.localScale.x < 0) || (moveX < 0 && transform.localScale.x > 0)) // 입력 방향과 캐릭터 방향이 다를 때
+            if ((moveX > 0 && _myTrans.localScale.x < 0) || (moveX < 0 && _myTrans.localScale.x > 0)) // 입력 방향과 캐릭터 방향이 다를 때
             {
-                transform.localScale = new Vector3(transform.localScale.x * (-1), transform.localScale.y, 1); 
+                _myTrans.localScale = new Vector3(_myTrans.localScale.x * (-1), _myTrans.localScale.y, 1); 
             }
             if (rb.velocity.y == 0)
                 anim.SetBool("isMove", true);
         }
         else anim.SetBool("isMove", false);
 
-        transform.position += movement * playerInfo._Speed * Time.deltaTime;
+        _myTrans.position += movement * playerInfo._Speed * Time.deltaTime * _stopMove;
     }
 
     void Attack() //공격
