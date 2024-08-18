@@ -8,7 +8,9 @@ public class Node : IHeapItem<Node>
     public Vector3 _worldPosition;
     public int _gridX { get; set; }
     public int _gridY { get; set; }
-    
+    public int _movementPenalty{ get; set; }
+
+    // Cost ฐüทร
     public int _gCost{ get; set; }
     public int _hCost { get; set; }
     public int fCost { get { return _gCost + _hCost; } }
@@ -23,12 +25,13 @@ public class Node : IHeapItem<Node>
         set { _heapIdx = value; }
     }
 
-    public Node (bool walkable, Vector3 worldPos, int gridX, int gridY)
+    public Node (bool walkable, Vector3 worldPos, int gridX, int gridY, int penalty)
     {
         _walkable = walkable;
         _worldPosition = worldPos;
         _gridX = gridX;
         _gridY = gridY;
+        _movementPenalty = penalty;
     }
 
     public int CompareTo(Node nodeToCompare)
