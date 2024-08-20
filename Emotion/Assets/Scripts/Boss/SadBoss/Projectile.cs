@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
-    private void Start()
-    {
-        
-    }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
@@ -19,7 +12,13 @@ public class Projectile : MonoBehaviour
         }
         else if (collision.CompareTag("Player"))
         {
-            Debug.Log("PlyaerHit");
+            IDamageable damage = collision.GetComponent<IDamageable>();
+
+            if (damage != null)
+            {
+                damage.OnDamage(10f);
+            }
+            Destroy(gameObject);
         }
     }
 }

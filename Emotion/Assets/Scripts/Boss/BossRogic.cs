@@ -2,13 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BOSS_TYPE
+{
+    ANGER,
+    SAD,
+    HAPPY,
+
+    MAX
+}
+
 public class BossRogic : LivingEntity
 {
+    [SerializeField] BOSS_TYPE _bossType;
+
     [SerializeField] float _skillDelay = 2f;
 
     [Header("보스 패턴 정보"), SerializeField] Pattern[] _pattern;
 
     [SerializeField] float _damageDelay;
+    float _lastDamage;
 
     [SerializeField] Transform _target;
 
@@ -36,7 +48,7 @@ public class BossRogic : LivingEntity
     {
         Vector3 dir = _target.position - transform.position;
 
-        Vector3 scale = new Vector3(dir.x > 0 ? -1 : 1, 1, 1);
+        Vector3 scale = new Vector3(dir.x > 0 ? -transform.localScale.x : transform.localScale.x, transform.localScale.y, 1);
         transform.localScale = scale;
     }
 
@@ -76,7 +88,7 @@ public class BossRogic : LivingEntity
     {
         IDamageable player = collision.GetComponent<IDamageable>();
 
-        if (player != null)
+        if (player != null && _bossType != BOSS_TYPE.SAD)
         {
             player.OnDamage(10f);
         }
@@ -86,9 +98,10 @@ public class BossRogic : LivingEntity
     {
         IDamageable player = collision.GetComponent<IDamageable>();
 
-        if (player != null)
+        if (player != null && Time.time >= _lastDamage + _damageDelay && _bossType != BOSS_TYPE.SAD)
         {
             player.OnDamage(10f);
+            _lastDamage = Time.time;
         }
     }
 

@@ -49,7 +49,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         Color tmpcolor = _sprite.color;
         _sprite.color = Color.red;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         _sprite.color = tmpcolor;
         _cor = null;
     }
