@@ -6,7 +6,7 @@ public enum BOSS_TYPE
 {
     ANGER,
     SAD,
-    HAPPY,
+    MADNESS,
 
     MAX
 }

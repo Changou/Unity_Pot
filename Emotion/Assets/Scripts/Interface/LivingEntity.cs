@@ -38,7 +38,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
         if (_cor == null)
         {
             Health -= damage;
-            _cor = StartCoroutine(DamageColor());
+            if(_sprite != null)
+                _cor = StartCoroutine(DamageColor());
         }
 
         if (Health <= 0f)
