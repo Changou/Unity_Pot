@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8723702252743415834}
   - component: {fileID: 737616407268579668}
   - component: {fileID: 2330284437374108225}
+  - component: {fileID: 1228082215927411979}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -148,6 +149,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1228082215927411979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831608481989175482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e52a0638d71e1429818c38e819a565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _speed: 5
+  _chaseSpeed: 5
+  _isAttack: 0
 --- !u!1 &5758282374079757341
 GameObject:
   m_ObjectHideFlags: 0

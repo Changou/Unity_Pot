@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 178907358677328138}
   - component: {fileID: 5233403891186001980}
   - component: {fileID: 2465304345365578304}
+  - component: {fileID: 6662766579213225200}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4247565692920438878}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
@@ -118,7 +119,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.03}
   m_Size: {x: 0.22, y: 0.41}
   m_Direction: 0
 --- !u!50 &2465304345365578304
@@ -148,6 +149,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6662766579213225200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247565692920438878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e52a0638d71e1429818c38e819a565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _speed: 5
+  _chaseSpeed: 5
+  _isAttack: 0
 --- !u!1 &5334570211834180581
 GameObject:
   m_ObjectHideFlags: 0

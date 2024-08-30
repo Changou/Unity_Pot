@@ -13,18 +13,18 @@ public enum BOSS_TYPE
 
 public class BossRogic : LivingEntity
 {
-    [SerializeField] BOSS_TYPE _bossType;
+    [SerializeField] protected BOSS_TYPE _bossType;
 
     [SerializeField] float _skillDelay = 2f;
 
-    [Header("보스 패턴 정보"), SerializeField] Pattern[] _pattern;
+    [Header("보스 패턴 정보"), SerializeField] protected Pattern[] _pattern;
 
     [SerializeField] float _damageDelay;
     float _lastDamage;
 
     [SerializeField] Transform _target;
 
-    bool isDelay = false;
+    protected bool isDelay = false;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class BossRogic : LivingEntity
         StartCoroutine(Think());
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Direction();
     }
@@ -52,7 +52,7 @@ public class BossRogic : LivingEntity
         transform.localScale = scale;
     }
 
-    IEnumerator Think()
+    protected virtual IEnumerator Think()
     {
         while (!IsDead)
         {
@@ -77,7 +77,7 @@ public class BossRogic : LivingEntity
             yield return null;
         }
     }
-    IEnumerator CoolTime()
+    protected IEnumerator CoolTime()
     {
         isDelay = true;
         yield return new WaitForSeconds(_skillDelay);
