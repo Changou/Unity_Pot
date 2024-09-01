@@ -45,3 +45,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Far
+    uniqueID: 134219627
+    locked: 0
+  - name: Far2
+    uniqueID: 498915181
+    locked: 0
+  - name: Far3
+    uniqueID: 1218837291
+    locked: 0
+  - name: Normal
+    uniqueID: 171923219
+    locked: 0
+  - name: Near2
+    uniqueID: 785795459
+    locked: 0
+  - name: Near
+    uniqueID: 233592829
+    locked: 0
