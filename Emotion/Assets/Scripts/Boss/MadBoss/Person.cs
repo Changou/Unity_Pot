@@ -22,7 +22,7 @@ public class Person : MonoBehaviour
 
     private void Start()
     {
-        Destroy(transform.parent.gameObject, 3f);
+       // Destroy(transform.parent.gameObject, 3f);
     }
 
     private void Update()
@@ -55,7 +55,17 @@ public class Person : MonoBehaviour
 
     void ChaseAttack()
     {
-        _rb.AddRelativeForce(Vector2.right * _chaseSpeed * Time.deltaTime, ForceMode2D.Impulse);
+        Vector3 dir = _target.position - transform.parent.position;
+        dir.y = 0; dir.z = 0;
+        if ((dir.x > 0 && transform.parent.localScale.x > 0) ||
+            (dir.x < 0 && transform.parent.localScale.x < 0))
+        {
+            Vector3 tmp = transform.parent.localScale;
+            tmp.x *= -1;
+            transform.parent.localScale = tmp;
+        }
+        transform.parent.position += dir.normalized * _chaseSpeed * Time.deltaTime;
+        //_rb.AddRelativeForce(Vector2.right * Time.deltaTime * _chaseSpeed, ForceMode2D.Impulse);
     }
 
     void Direction()
@@ -72,7 +82,6 @@ public class Person : MonoBehaviour
 
     void FlyAttack()
     {
-        
         _rb.AddRelativeForce(Vector2.up * _speed , ForceMode2D.Force);
     }
 }

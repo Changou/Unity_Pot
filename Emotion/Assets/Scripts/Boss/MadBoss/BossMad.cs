@@ -37,11 +37,11 @@ public class BossMad : BossRogic
                     case 4:
                     case 5:
                     case 6:
-                        _pattern[1].PatternOn(true);
+                        _pattern[0].PatternOn(true);
                         break;
                     case 7:
                     case 8:
-                        _pattern[2].PatternOn(true);
+                        _pattern[0].PatternOn(true);
                         break;
                 }
                 StartCoroutine(CoolTime());

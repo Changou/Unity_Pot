@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _speed: 5
-  _chaseSpeed: 5
+  _chaseSpeed: 3
   _isAttack: 0
 --- !u!1 &2809738631825154290
 GameObject:
