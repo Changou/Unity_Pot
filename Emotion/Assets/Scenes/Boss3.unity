@@ -2470,9 +2470,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1612252027778119066, guid: bda220df35eaf4240a96e01a48ad7236, type: 3}
-      propertyPath: jumpPower
-      value: 13
+    - target: {fileID: 758686841604329261, guid: bda220df35eaf4240a96e01a48ad7236, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 758686841604329261, guid: bda220df35eaf4240a96e01a48ad7236, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 171923219
       objectReference: {fileID: 0}
     - target: {fileID: 3016982122080734860, guid: bda220df35eaf4240a96e01a48ad7236, type: 3}
       propertyPath: m_LocalPosition.x

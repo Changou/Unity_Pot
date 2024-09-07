@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atk: 0
   speed: 5
-  jumpPower: 9
+  jumpPower: 13
   dashPower: 40
   dashTime: 0.1
   attackDelay: 0.4
