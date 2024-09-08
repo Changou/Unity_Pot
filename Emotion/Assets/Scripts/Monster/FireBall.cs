@@ -18,8 +18,9 @@ public class FireBall : MonoBehaviour
         set { dir = value; }
     }
 
+
     private void Update()
     {
-        transform.localPosition += dir * _speed * Time.deltaTime; 
+        transform.localPosition += dir.normalized * _speed * Time.deltaTime; 
     }
 }

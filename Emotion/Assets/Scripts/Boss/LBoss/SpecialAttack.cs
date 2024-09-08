@@ -9,6 +9,7 @@ public class SpecialAttack : Pattern
     [SerializeField] GameObject _fireWall;
     [SerializeField] float _dangerTime;
     [SerializeField] float _lifeTime;
+    [SerializeField] float _coolTime;
 
     private void OnEnable()
     {
@@ -28,5 +29,8 @@ public class SpecialAttack : Pattern
         pos.y = 2;
         fire.transform.position = pos;
         Destroy(fire, _lifeTime);
+
+        yield return new WaitForSeconds(_coolTime);
+        PatternOn(false);
     }
 }

@@ -22,14 +22,14 @@ public class Person : MonoBehaviour
 
     private void Start()
     {
-       // Destroy(transform.parent.gameObject, 3f);
+       Destroy(transform.parent.gameObject, 5f);
     }
 
     private void Update()
     {
         if (_isAttack)
         {
-            Direction();
+            //Direction();
             ChaseAttack();
         }
         else
@@ -57,8 +57,8 @@ public class Person : MonoBehaviour
     {
         Vector3 dir = _target.position - transform.parent.position;
         dir.y = 0; dir.z = 0;
-        if ((dir.x > 0 && transform.parent.localScale.x > 0) ||
-            (dir.x < 0 && transform.parent.localScale.x < 0))
+        if ((dir.x > 0 && transform.parent.localScale.x < 0) ||
+            (dir.x < 0 && transform.parent.localScale.x > 0))
         {
             Vector3 tmp = transform.parent.localScale;
             tmp.x *= -1;
@@ -66,18 +66,6 @@ public class Person : MonoBehaviour
         }
         transform.parent.position += dir.normalized * _chaseSpeed * Time.deltaTime;
         //_rb.AddRelativeForce(Vector2.right * Time.deltaTime * _chaseSpeed, ForceMode2D.Impulse);
-    }
-
-    void Direction()
-    {
-        Vector3 dir = _target.position - transform.position;
-
-        Vector3 scale = transform.parent.localScale;
-        if ((dir.x > 0 && transform.parent.localScale.x < 0) ||
-                (dir.x < 0 && transform.parent.localScale.x > 0))
-            scale.x *= -1;
-
-        transform.parent.localScale = scale;
     }
 
     void FlyAttack()
