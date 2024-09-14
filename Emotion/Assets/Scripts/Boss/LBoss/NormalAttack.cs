@@ -8,7 +8,7 @@ public class NormalAttack : Pattern
     [SerializeField] GameObject _prefab;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         Attack();
     }
@@ -16,9 +16,17 @@ public class NormalAttack : Pattern
     void Attack()
     {
         Transform tmp = _target;
-        Vector3 dir = tmp.position - transform.position;
+        float x = tmp.parent.position.x - transform.position.x;
+        float y = tmp.position.y - transform.position.y;
+                
 
         GameObject fire = Instantiate(_prefab, transform.parent);
-        fire.GetComponent<FireBall>().Dir = dir.normalized;
+        float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+
+        fire.transform.rotation = Quaternion.Euler(0, 0, angle + 180);
+
+        fire.GetComponent<FireBall>().Dir = new Vector3(x,y,0);
+
+        PatternOn(false);
     }
 }

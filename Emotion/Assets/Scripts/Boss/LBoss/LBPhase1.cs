@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class LBPhase1 : LivingEntity
 {
-    [SerializeField] float _skillDelay = 2f;
+    [SerializeField] float _skillDelay = 1f;
 
     [Header("보스 패턴 정보"), SerializeField] protected Pattern[] _pattern;
 
@@ -26,6 +26,7 @@ public class LBPhase1 : LivingEntity
         StartCoroutine(Think());
     }
 
+    /*
     protected virtual void Update()
     {
         Direction();
@@ -38,27 +39,21 @@ public class LBPhase1 : LivingEntity
         Vector3 scale = new Vector3(dir.x > 0 ? -transform.localScale.x : transform.localScale.x, transform.localScale.y, 1);
         transform.localScale = scale;
     }
-
+    */
     protected virtual IEnumerator Think()
     {
         while (!IsDead)
         {
             if (!isDelay)
             {
-                int ran = Random.Range(0, 6);
-                switch (ran)
-                {
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                        _pattern[0].PatternOn(true);
+                int ran;
+                while (true) {
+                    ran = Random.Range(0, _pattern.Length);
+                    if (!_pattern[ran].isActiveAndEnabled)
                         break;
-                    case 4:
-                    case 5:
-                        _pattern[1].PatternOn(true);
-                        break;
+                    yield return null;
                 }
+                _pattern[ran].PatternOn(true);
                 StartCoroutine(CoolTime());
             }
             yield return null;
