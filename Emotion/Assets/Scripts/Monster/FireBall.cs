@@ -22,5 +22,13 @@ public class FireBall : MonoBehaviour
     private void Update()
     {
         transform.localPosition += dir.normalized * _speed * Time.deltaTime; 
+
+        CheckAlive();
+    }
+    void CheckAlive()
+    {
+        Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+        if (pos.x < -100f || pos.x > Screen.width + 100f)
+            Destroy(gameObject);
     }
 }

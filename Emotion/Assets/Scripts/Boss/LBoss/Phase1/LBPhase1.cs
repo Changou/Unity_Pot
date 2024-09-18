@@ -26,20 +26,6 @@ public class LBPhase1 : LivingEntity
         StartCoroutine(Think());
     }
 
-    /*
-    protected virtual void Update()
-    {
-        Direction();
-    }
-
-    void Direction()
-    {
-        Vector3 dir = _target.position - transform.position;
-
-        Vector3 scale = new Vector3(dir.x > 0 ? -transform.localScale.x : transform.localScale.x, transform.localScale.y, 1);
-        transform.localScale = scale;
-    }
-    */
     protected virtual IEnumerator Think()
     {
         while (!IsDead)
