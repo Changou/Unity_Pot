@@ -1,12 +1,24 @@
 fileFormatVersion: 2
-guid: 716fc6a88e16849469a418968555f62c
+guid: 6e2b860b2cf2adc4788f1feb7233fefa
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8008791250619013794
+    second: Take Hit - white silhouette_0
+  - first:
+      213: 3891156215361153934
+    second: Take Hit - white silhouette_1
+  - first:
+      213: -7146689698409757683
+    second: Take Hit - white silhouette_2
+  - first:
+      213: 8523606802079886837
+    second: Take Hit - white silhouette_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -63,9 +75,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -93,17 +105,69 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Knight-Attack-Sheet_0
+      name: Take Hit - white silhouette_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 74
-        height: 74
+        width: 160
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93528addfa38a4f449653b14607b73d1
-      internalID: 2013238232
+      spriteID: 8f0981524fd811243b6880a7ab066cfd
+      internalID: -8008791250619013794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight-Attack-Sheet_1
+      name: Take Hit - white silhouette_1
       rect:
         serializedVersion: 2
-        x: 74
+        x: 160
         y: 0
-        width: 74
-        height: 74
+        width: 160
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ed9e4c659033de40a0a461d229a3fa9
-      internalID: 684770407
+      spriteID: ec39a4c988a48f64e83657369710fd89
+      internalID: 3891156215361153934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight-Attack-Sheet_2
+      name: Take Hit - white silhouette_2
       rect:
         serializedVersion: 2
-        x: 148
+        x: 320
         y: 0
-        width: 74
-        height: 74
+        width: 160
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +217,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b5d7d798dcfe8f48b2ca5e523d671d1
-      internalID: 1581448269
+      spriteID: 312ed22b2aa933948b71e4133157000b
+      internalID: -7146689698409757683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight-Attack-Sheet_3
+      name: Take Hit - white silhouette_3
       rect:
         serializedVersion: 2
-        x: 222
+        x: 480
         y: 0
-        width: 74
-        height: 74
+        width: 160
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,71 +238,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 721feef18edc1274f96115f9a8f5b40a
-      internalID: -1034935870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Attack-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 296
-        y: 0
-        width: 74
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 242e1c24467d78a4d86f95f6ff849048
-      internalID: -1112536368
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Attack-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 370
-        y: 0
-        width: 74
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0dbcc3ccbd4608c4c8fc944dc72763dc
-      internalID: 149955099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight-Attack-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 444
-        y: 0
-        width: 74
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f7dba247a8f27944a7a63f902c0ca6b
-      internalID: -349424750
+      spriteID: 62bb245fb313d6849a48d85d8e83883b
+      internalID: 8523606802079886837
       vertices: []
       indices: 
       edges: []
@@ -254,13 +255,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Knight-Attack-Sheet_0: 2013238232
-      Knight-Attack-Sheet_1: 684770407
-      Knight-Attack-Sheet_2: 1581448269
-      Knight-Attack-Sheet_3: -1034935870
-      Knight-Attack-Sheet_4: -1112536368
-      Knight-Attack-Sheet_5: 149955099
-      Knight-Attack-Sheet_6: -349424750
+      Take Hit - white silhouette_0: -8008791250619013794
+      Take Hit - white silhouette_1: 3891156215361153934
+      Take Hit - white silhouette_2: -7146689698409757683
+      Take Hit - white silhouette_3: 8523606802079886837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

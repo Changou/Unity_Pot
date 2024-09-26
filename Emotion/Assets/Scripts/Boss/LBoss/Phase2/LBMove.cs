@@ -22,6 +22,7 @@ public class LBMove : Pattern
         if(dir.x < 0)
         {
             Vector3 scale = Vector3.one;
+            scale.x = 1;
             transform.localScale = scale;
             _myPos.position += Vector3.left * _speed * Time.deltaTime;
         }
