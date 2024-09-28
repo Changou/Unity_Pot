@@ -8,7 +8,7 @@ public class SPAttack1 : Pattern
     [SerializeField] int _lineCnt;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(CrossAttack());
     }

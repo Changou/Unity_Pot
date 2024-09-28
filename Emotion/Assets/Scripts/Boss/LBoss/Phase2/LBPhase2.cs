@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LBPhase2 : MonoBehaviour
+public class LBPhase2 : LivingEntity
 {
     public enum STATE
     {
