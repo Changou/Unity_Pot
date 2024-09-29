@@ -23,6 +23,7 @@ public class LBPhase1 : LivingEntity
 
     private void Start()
     {
+        OnDeath += () => PhaseManager._Inst.PhaseEndAndNextPhase();
         StartCoroutine(Think());
     }
 
@@ -51,4 +52,5 @@ public class LBPhase1 : LivingEntity
         yield return new WaitForSeconds(_skillDelay);
         isDelay = false;
     }
+
 }

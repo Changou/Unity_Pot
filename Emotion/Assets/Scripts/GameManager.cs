@@ -23,4 +23,9 @@ public class GameManager : MonoBehaviour
     {
         _isPause = false;
     }
+
+    public void GameOver()
+    {
+        Pause();
+    }
 }

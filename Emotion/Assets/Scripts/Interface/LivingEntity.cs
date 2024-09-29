@@ -33,8 +33,6 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         if (IsDead) return;
 
-        
-
         if (_cor == null)
         {
             Health -= damage;

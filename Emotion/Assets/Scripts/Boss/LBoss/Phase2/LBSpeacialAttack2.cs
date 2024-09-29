@@ -40,10 +40,17 @@ public class LBSpeacialAttack2 : Pattern
         yield return new WaitForSeconds(_warningTime);
         _anim.SetTrigger("Attack");
         yield return new WaitForSeconds(0.5f);
+
         foreach(GameObject warning in line)
         {
             warning.GetComponent<Collider2D>().enabled = true;
+
+            Color color = warning.GetComponent<Renderer>().material.color;
+            color.a = 255;
+            warning.GetComponent <Renderer>().material.color = color;
+
         }
+
         yield return new WaitForSeconds(1f);
 
         for(int i = 0; i < line.Length; i++)

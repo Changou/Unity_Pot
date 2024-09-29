@@ -46,6 +46,8 @@ public class LBSpeacialAttack1 : Pattern
         sEnergy.transform.localScale = pScale;
         sEnergy.transform.position = pos;
 
+        yield return new WaitForSeconds(0.5f);
+
         yield return new WaitForSeconds(_patternTime);
         PatternOn(false);
     }
