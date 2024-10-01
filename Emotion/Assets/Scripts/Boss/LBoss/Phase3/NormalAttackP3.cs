@@ -16,13 +16,7 @@ public class NormalAttackP3 : Pattern
         _anim = GetComponent<Animator>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(JumpDownAttack());
-    }
-
-    IEnumerator JumpDownAttack()
+    protected override IEnumerator Attack()
     {
         transform.localPosition = new Vector3(_target.position.x, _jumpPos, 0);
         _anim.SetBool("JDAttack", true);

@@ -12,12 +12,7 @@ public class RainAttack : Pattern
 
     Vector3 _spawn;
 
-    private void OnEnable()
-    {
-        StartCoroutine(Attack());
-    }
-
-    IEnumerator Attack()
+    protected override IEnumerator Attack()
     {
         float time = 0;
         while (time < _duration) {

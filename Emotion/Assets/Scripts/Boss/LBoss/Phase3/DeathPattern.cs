@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathPattern : MonoBehaviour
+public class DeathPattern : Pattern
 {
     [Header("Á×À½ ¿µ¿ª"), SerializeField] GameObject _deathArea;
 
@@ -18,12 +18,7 @@ public class DeathPattern : MonoBehaviour
         _anim = GetComponent<Animator>();
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(DeathAttack());
-    }
-
-    IEnumerator DeathAttack()
+    protected override IEnumerator Attack()
     {
         transform.localPosition = Vector3.zero;
         _barrier.SetActive(true);

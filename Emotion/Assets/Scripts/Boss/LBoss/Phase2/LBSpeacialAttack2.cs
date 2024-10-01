@@ -19,12 +19,7 @@ public class LBSpeacialAttack2 : Pattern
         _anim = GetComponent<Animator>();
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(WideAttack());
-    }
-
-    IEnumerator WideAttack()
+    protected override IEnumerator Attack()
     {
         GameObject[] line = new GameObject[_lineCount];
         for(int i = 0; i < _lineCount; i++)

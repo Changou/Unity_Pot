@@ -7,13 +7,13 @@ public class LBNormalAttack1 : Pattern
     [SerializeField] Animator _anim;
     [SerializeField] Collider2D _collider;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         _anim.SetTrigger("Attack");
-        StartCoroutine(PatternOff());
+        base.OnEnable();
     }
 
-    IEnumerator PatternOff()
+    protected override IEnumerator Attack()
     {
         _collider.enabled = true;
         yield return new WaitForSeconds(_patternTime);

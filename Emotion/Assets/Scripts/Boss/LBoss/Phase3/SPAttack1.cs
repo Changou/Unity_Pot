@@ -7,13 +7,7 @@ public class SPAttack1 : Pattern
     [SerializeField] GameObject _waringLine;
     [SerializeField] int _lineCnt;
 
-    // Start is called before the first frame update
-    void OnEnable()
-    {
-        StartCoroutine(CrossAttack());
-    }
-
-    IEnumerator CrossAttack()
+    protected override IEnumerator Attack()
     {
         GameObject[] lines = new GameObject[_lineCnt];
 

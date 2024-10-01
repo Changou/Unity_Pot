@@ -8,7 +8,7 @@ public class NormalAttack : Pattern
     [SerializeField] GameObject _prefab;
 
     // Start is called before the first frame update
-    void OnEnable()
+    protected override void OnEnable()
     {
         Attack();
     }

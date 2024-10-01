@@ -5,19 +5,13 @@ using UnityEngine;
 public class LBNormalAttack2 : Pattern
 {
     [SerializeField] Transform _target;
-    [SerializeField] Transform _myPos;
     [SerializeField] Collider2D _coll;
     [SerializeField] Animator _anim;
 
-    private void OnEnable()
+    protected override IEnumerator Attack()
     {
-        StartCoroutine(PatternOff());
-    }
-
-    IEnumerator PatternOff()
-    {
-        Vector3 pos = _myPos.position;
-        Vector3 scale = _myPos.localScale;
+        Vector3 pos = transform.localPosition;
+        Vector3 scale = transform.localScale;
         if (_target.localScale.x > 0)
         {
             pos.x = _target.position.x - 1.5f;
@@ -28,8 +22,8 @@ public class LBNormalAttack2 : Pattern
             pos.x = _target.position.x + 1.5f;
             scale.x = 1;
         }
-        _myPos.localScale = scale;
-        _myPos.position = pos;
+        transform.localScale = scale;
+        transform.localPosition = pos;
         yield return new WaitForSeconds(0.8f);
 
         _anim.SetTrigger("Attack");
