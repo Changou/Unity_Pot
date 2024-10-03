@@ -9,7 +9,7 @@ public class UIBoss : UIBase
     [SerializeField] Text _bossName;
     [SerializeField] LivingEntity _boss;
 
-    private void Start()
+    private void OnEnable()
     {
         _hpSlider.maxValue = _boss._startingHealth;
         _hpSlider.value = _hpSlider.maxValue;
