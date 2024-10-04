@@ -12,16 +12,19 @@ public class DeathPattern : Pattern
     [SerializeField] GameObject _barrier;
 
     Animator _anim;
+    Collider2D _coll;
 
     private void Awake()
     {
         _anim = GetComponent<Animator>();
+        _coll = GetComponent<Collider2D>();
     }
 
     protected override IEnumerator Attack()
     {
         transform.localPosition = Vector3.zero;
         _barrier.SetActive(true);
+        _coll.enabled = false;
 
         yield return new WaitForSeconds(_deathTime);
         _anim.SetTrigger("DAttackOn");
@@ -29,5 +32,15 @@ public class DeathPattern : Pattern
         GameObject death = Instantiate(_deathArea);
         yield return new WaitForSeconds(1);
         Destroy(death);
+    }
+
+    private void Update()
+    {
+        if (!_barrier.activeSelf)
+        {
+            StopCoroutine(Attack());
+            transform.GetComponent<LBPhase3>().Groggy();
+            Destroy(this);
+        }
     }
 }

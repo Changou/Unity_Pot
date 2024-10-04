@@ -11,7 +11,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public bool IsDead {  get; protected set; }
     public event Action OnDeath;
 
-    [SerializeField] SpriteRenderer _sprite;
+    [SerializeField] protected SpriteRenderer _sprite;
 
     Coroutine _cor;
 

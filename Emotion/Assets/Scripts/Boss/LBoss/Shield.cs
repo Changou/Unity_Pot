@@ -6,17 +6,16 @@ using UnityEngine.UI;
 public class Shield : LivingEntity
 {
     [SerializeField] Collider2D _bossColl;
-    [SerializeField] Slider _shieldSlider;
+    [SerializeField] protected Slider _shieldSlider;
 
     [Header("½¯µå ·®")]
-    [SerializeField] int _maxShield;
-    [SerializeField] int _shieldNum;
+    [SerializeField] protected int _maxShield;
 
-    private void Start()
+    protected virtual void Start()
     {
         _shieldSlider.maxValue = _maxShield;
         _shieldSlider.minValue = 0;
-        _shieldSlider.value = _shieldNum;
+        _shieldSlider.value = _startingHealth;
     }
 
     public override void OnDamage(float damage)
@@ -30,10 +29,5 @@ public class Shield : LivingEntity
     {
         _bossColl.enabled = true;
         gameObject.SetActive(false);
-    }
-
-    public void OnShield()
-    {
-
     }
 }

@@ -11,6 +11,8 @@ public class LBPhase1 : LivingEntity
 
     [SerializeField] Transform _target;
 
+    [SerializeField] Shield _shield;
+
     protected bool isDelay = false;
 
     private void Awake()
@@ -25,6 +27,7 @@ public class LBPhase1 : LivingEntity
     {
         OnDeath += () => PhaseManager._Inst.PhaseEndAndNextPhase();
         StartCoroutine(Think());
+        _shield.gameObject.SetActive(true);
     }
 
     protected virtual IEnumerator Think()
