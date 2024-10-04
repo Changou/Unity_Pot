@@ -13,6 +13,7 @@ public class LBPhase3 : LivingEntity
 
     enum PHASE3
     {
+        MOVE,
         N1ATTACK1,
         N1ATTACK2,
         N2ATTACK1,
