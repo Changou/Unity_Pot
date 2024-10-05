@@ -619,7 +619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &78862217
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa9f8b2e08e94b408e06e0a57429d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentPhase: 2
+  _currentPhase: 1
   _phaseBoss:
   - {fileID: 1213930544}
   - {fileID: 1266028817}
@@ -3284,7 +3284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &661860019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4169,11 +4169,11 @@ PrefabInstance:
       objectReference: {fileID: 1491207600}
     - target: {fileID: 7379628782662406681, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7379628782662406681, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8010824432848758903, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_Pivot.x
@@ -4657,7 +4657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1213930545
 Transform:
   m_ObjectHideFlags: 0
@@ -4775,7 +4775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1266028818
 Transform:
   m_ObjectHideFlags: 0
@@ -5662,7 +5662,7 @@ RectTransform:
   m_Father: {fileID: 1417296112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6344,11 +6344,11 @@ PrefabInstance:
       objectReference: {fileID: 96116751}
     - target: {fileID: 7379628782662406681, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7379628782662406681, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8010824432848758903, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_Pivot.x

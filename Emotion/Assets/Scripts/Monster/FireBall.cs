@@ -5,6 +5,7 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     [SerializeField] float _speed = 3f;
+    [SerializeField] float _damage;
 
     private void Awake()
     {
@@ -30,5 +31,16 @@ public class FireBall : MonoBehaviour
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         if (pos.x < -100f || pos.x > Screen.width + 100f)
             Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IDamageable target = collision.GetComponent<IDamageable>();
+
+        if(target != null)
+        {
+            target.OnDamage(_damage);
+            Destroy(gameObject);
+        }
     }
 }

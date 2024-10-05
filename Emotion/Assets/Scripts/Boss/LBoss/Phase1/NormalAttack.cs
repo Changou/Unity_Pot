@@ -18,7 +18,6 @@ public class NormalAttack : Pattern
         Transform tmp = _target;
         float x = tmp.parent.position.x - transform.position.x;
         float y = tmp.position.y - transform.position.y;
-                
 
         GameObject fire = Instantiate(_prefab, transform.parent);
         float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
@@ -26,6 +25,7 @@ public class NormalAttack : Pattern
         fire.transform.rotation = Quaternion.Euler(0, 0, angle + 180);
 
         fire.GetComponent<FireBall>().Dir = new Vector3(x,y,0);
+        fire.transform.SetParent(null);
 
         PatternOn(false);
     }
