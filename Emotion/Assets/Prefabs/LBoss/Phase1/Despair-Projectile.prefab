@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6401269706111566526}
   - component: {fileID: 8591030255927050219}
   - component: {fileID: 2240735507069705893}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Despair-Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackDetectrion : MagicDamage
+public class Phase2Production : MonoBehaviour
 {
+    
 }

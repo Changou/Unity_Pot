@@ -15,12 +15,15 @@ public class LBPhase1 : LivingEntity
 
     protected bool isDelay = false;
 
+    Animator _anim;
+
     private void Awake()
     {
         foreach (Pattern pattern in _pattern)
         {
             pattern.PatternOn(false);
         }
+        _anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -44,6 +47,7 @@ public class LBPhase1 : LivingEntity
                     yield return null;
                 }
                 _pattern[ran].PatternOn(true);
+                _anim.SetTrigger("Attack");
                 StartCoroutine(CoolTime());
             }
             yield return null;

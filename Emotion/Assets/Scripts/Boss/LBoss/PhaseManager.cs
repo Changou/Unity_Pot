@@ -16,10 +16,10 @@ public class PhaseManager : MonoBehaviour
     [SerializeField] GameObject[] _phaseBoss;
     [SerializeField] GameObject[] _phaseUI;
 
-    private void Start()
-    {
-        PhaseSetting();
-    }
+    //private void Start()
+    //{
+    //    PhaseSetting();
+    //}
 
     public void PhaseEndAndNextPhase()
     {
@@ -27,7 +27,7 @@ public class PhaseManager : MonoBehaviour
         PhaseSetting();
     }
 
-    void PhaseSetting()
+    public void PhaseSetting()
     {
         for (int i = 0; i < _phaseBoss.Length; i++)
         {

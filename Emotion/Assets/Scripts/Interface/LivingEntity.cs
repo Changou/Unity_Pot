@@ -44,12 +44,20 @@ public class LivingEntity : MonoBehaviour, IDamageable
             Die();
     }
 
+    [Header("ÇÇ°Ý ±ôºýÀÓ È½¼ö"), SerializeField] int _damageBlink; 
     IEnumerator DamageColor()
     {
-        Color tmpcolor = _sprite.color;
-        _sprite.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
-        _sprite.color = tmpcolor;
+        int blinkCnt = 0;
+        while (blinkCnt < _damageBlink)
+        {
+            Color tmpcolor = _sprite.color;
+            _sprite.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            _sprite.color = tmpcolor;
+            yield return new WaitForSeconds(0.05f);
+            blinkCnt++;
+            yield return null;
+        }
         _cor = null;
     }
 }

@@ -6,6 +6,7 @@ public class LBNormalAttack1 : Pattern
 {
     [SerializeField] Animator _anim;
     [SerializeField] Collider2D _collider;
+    [SerializeField] Transform _target;
 
     protected override void OnEnable()
     {
@@ -15,6 +16,14 @@ public class LBNormalAttack1 : Pattern
 
     protected override IEnumerator Attack()
     {
+        Vector3 dir = _target.position - transform.position;
+
+        Vector3 scale = transform.localScale;
+        if(dir.x > 0) 
+            scale.x = -1;
+        else
+            scale.x = 1;
+
         _collider.enabled = true;
         yield return new WaitForSeconds(_patternTime);
         _collider.enabled = false;

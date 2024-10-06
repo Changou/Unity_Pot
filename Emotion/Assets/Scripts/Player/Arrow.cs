@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Arrow : MonoBehaviour
+public class Arrow : MagicDamage
 {
     [SerializeField] float speed;
 

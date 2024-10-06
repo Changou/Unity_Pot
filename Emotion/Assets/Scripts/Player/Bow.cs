@@ -14,18 +14,12 @@ public class Bow : WeaponBase
 
     bool isShot = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         angle = Mathf.Atan2(mouse.y - transform.position.y, mouse.x - transform.position.x) * Mathf.Rad2Deg;
-        angle += transform.parent.localScale.x < 0 ? 180 : 0;
+        angle += transform.parent.parent.localScale.x < 0 ? 180 : 0;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
@@ -37,10 +31,10 @@ public class Bow : WeaponBase
             GameObject arrow = Instantiate(prefab);
             arrow.transform.SetParent(transform.GetChild(0));
             arrow.transform.localPosition = Vector3.zero;
-            if(transform.parent.localScale.x < 0)
+            if (transform.parent.parent.localScale.x < 0)
             {
-
-                arrow.transform.rotation = Quaternion.AngleAxis(angle - 180f, Vector3.forward);
+                arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward)
+                    * new Quaternion(0, 0, 180, 0);
             }
             else
                 arrow.transform.rotation = transform.rotation;
