@@ -28,7 +28,10 @@ public class LBPhase1 : LivingEntity
 
     private void Start()
     {
-        OnDeath += () => PhaseManager._Inst.PhaseEndAndNextPhase();
+        OnDeath += () => { 
+            _anim.SetTrigger("Die");
+            PhaseManager._Inst.Phase2Start();
+        };
         StartCoroutine(Think());
         _shield.gameObject.SetActive(true);
     }
@@ -60,4 +63,25 @@ public class LBPhase1 : LivingEntity
         isDelay = false;
     }
 
+    public override void OnDamage(float damage)
+    {
+        base.OnDamage(damage);
+        _anim.SetTrigger("Hurt");
+    }
+
+
+    [Header("등장연출"), SerializeField] GameObject _firewall;
+    public void NextPhase()
+    {
+        GameObject fire = Instantiate(_firewall);
+        Destroy(fire, 3f);
+        Invoke("Boss2Active",3f);
+        _sprite.enabled = false;
+    }
+    void Boss2Active()
+    {
+        PhaseManager._Inst.PhaseEndAndNextPhase();
+        PhaseManager._Inst.Phase2TitleOn();
+        UIManager2._Inst.AllHide();
+    }
 }

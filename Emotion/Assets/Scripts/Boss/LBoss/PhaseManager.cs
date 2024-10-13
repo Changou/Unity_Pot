@@ -21,10 +21,23 @@ public class PhaseManager : MonoBehaviour
     //    PhaseSetting();
     //}
 
+    [Header("페이즈 연출")]
+    [SerializeField] Phase2Production _phase2P;
+
     public void PhaseEndAndNextPhase()
     {
         _currentPhase++;
         PhaseSetting();
+    }
+
+    public void Phase2TitleOn()
+    {
+        _phase2P.TitleOn();
+    }
+
+    public void Phase2Start()
+    {
+        _phase2P.Phase2PStart();
     }
 
     public void PhaseSetting()
