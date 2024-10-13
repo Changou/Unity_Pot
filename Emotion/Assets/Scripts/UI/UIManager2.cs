@@ -9,6 +9,9 @@ public class UIManager2 : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject[] _ui;
 
+    [Header("Re")]
+    [SerializeField] GameObject _re;
+
     private void Awake()
     {
         _Inst = this;
@@ -20,5 +23,10 @@ public class UIManager2 : MonoBehaviour
         {
             ui.SetActive(false);
         }
+    }
+
+    public void OnRestartButton()
+    {
+        _re.SetActive(true);
     }
 }

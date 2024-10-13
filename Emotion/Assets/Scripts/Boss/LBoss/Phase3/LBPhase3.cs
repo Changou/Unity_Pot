@@ -26,8 +26,23 @@ public class LBPhase3 : LivingEntity
 
     Coroutine _rogic;
 
+    Animator _anim;
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+    }
+
     void Start()
     {
+        OnDeath += () => 
+        {
+            StopCoroutine(_rogic);
+            _anim.SetTrigger("Die");
+            UIManager2._Inst.AllHide();
+            AllClear();
+            GameManager._Inst.Pause();
+        };
         _rogic = StartCoroutine(Rogic());
     }
 
@@ -63,6 +78,11 @@ public class LBPhase3 : LivingEntity
         }
     }
 
+    public void EndGame()
+    {
+        PhaseManager._Inst.ProductionStart();
+    }
+
     void PatternAllStop()
     {
         foreach(Pattern pattern in _patterns)
@@ -74,6 +94,24 @@ public class LBPhase3 : LivingEntity
     [Header("그로기 타임"), SerializeField] float _groggyTime;
     [Header("그로기 마테리얼")]
     [SerializeField] Material _groggyMat;
+
+    public void AllClear()
+    {
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Projectile");
+        if (obj != null)
+        {
+            for (int i = 0; i < obj.Length; i++)
+            {
+                Destroy(obj[i]);
+            }
+        }
+
+        foreach (Pattern pattern in _patterns)
+        {
+            pattern.StopAllCoroutines();
+            pattern.PatternOn(false);
+        }
+    }
 
     public void Groggy()
     {

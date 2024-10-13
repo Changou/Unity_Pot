@@ -23,13 +23,18 @@ public class LBPhase2 : LivingEntity
     // Start is called before the first frame update
     void Start()
     {
-        OnDeath += () => PhaseManager._Inst.PhaseEndAndNextPhase();
-        StartCoroutine(Rogic());
+        OnDeath += () =>
+        {
+            StopCoroutine("Rogic");
+            AllClear();
+            PhaseManager._Inst.ProductionStart();
+        };
+        StartCoroutine("Rogic");
     }
 
     IEnumerator Rogic()
     {
-        while (true)
+        while (!IsDead)
         {
             yield return new WaitForSeconds(_actTime);
             int num;
@@ -45,6 +50,24 @@ public class LBPhase2 : LivingEntity
             }
             _patterns[num].PatternOn(true);
             yield return null;
+        }
+    }
+
+    public void AllClear()
+    {
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Projectile");
+        if (obj != null)
+        {
+            for (int i = 0; i < obj.Length; i++)
+            {
+                Destroy(obj[i]);
+            }
+        }
+
+        foreach (Pattern pattern in _patterns)
+        {
+            pattern.StopAllCoroutines();
+            pattern.PatternOn(false);
         }
     }
 }

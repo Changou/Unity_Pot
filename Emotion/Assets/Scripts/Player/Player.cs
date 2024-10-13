@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -48,13 +49,22 @@ public class Player : LivingEntity
     }
     private void Start()
     {
+        OnDeath += () =>
+        {
+            anim.SetTrigger("Die");
+            GameManager._Inst.Pause();
+            UIManager2._Inst.AllHide();
+        };
         rb.gravityScale = 0f;
         _coll.isTrigger = true;
     }
 
+    void EndGame()
+    {
+        GameManager._Inst.GameOver();
+    }
     void Update()
     {
-
         if (!GameManager._Inst._IsPause && !isAttack)
         {
             if (MoveController.i._LeftClick && rb.velocity.y == 0)

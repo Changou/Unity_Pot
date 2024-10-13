@@ -28,9 +28,11 @@ public class LBPhase1 : LivingEntity
 
     private void Start()
     {
-        OnDeath += () => { 
+        OnDeath += () => {
+            StopCoroutine("Think");
+            AllClear();
             _anim.SetTrigger("Die");
-            PhaseManager._Inst.Phase2Start();
+            PhaseManager._Inst.ProductionStart();
         };
         StartCoroutine(Think());
         _shield.gameObject.SetActive(true);
@@ -69,19 +71,38 @@ public class LBPhase1 : LivingEntity
         _anim.SetTrigger("Hurt");
     }
 
+    public void AllClear()
+    {
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Projectile");
+        if (obj != null)
+        {
+            for (int i = 0; i < obj.Length; i++)
+            {
+                Destroy(obj[i]);
+            }
+        }
+        transform.parent.GetChild(2).gameObject.SetActive(false);
+        foreach (Pattern pattern in _pattern)
+        {
+            pattern.StopAllCoroutines();
+            pattern.PatternOn(false);
+        }
+    }
 
     [Header("등장연출"), SerializeField] GameObject _firewall;
     public void NextPhase()
     {
         GameObject fire = Instantiate(_firewall);
+        fire.GetComponent<Collider2D>().enabled = false;
         Destroy(fire, 3f);
         Invoke("Boss2Active",3f);
         _sprite.enabled = false;
     }
     void Boss2Active()
     {
+        PhaseManager._Inst.PhaseTitleOn();
         PhaseManager._Inst.PhaseEndAndNextPhase();
-        PhaseManager._Inst.Phase2TitleOn();
+
         UIManager2._Inst.AllHide();
     }
 }

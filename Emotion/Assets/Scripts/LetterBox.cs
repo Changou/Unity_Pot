@@ -1,7 +1,9 @@
+using Cainos.LucidEditor;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LetterBox : MonoBehaviour
 {
@@ -9,11 +11,26 @@ public class LetterBox : MonoBehaviour
     [SerializeField] DOTweenAnimation _letter;
 
     [Header("Å¸ÀÌÆ²")]
-    [SerializeField] DOTweenAnimation[] _titles;
+    [SerializeField] DOTweenAnimation _title;
+
+    [Header("¿£µù ÆÐ³Î")]
+    [SerializeField] DOTweenAnimation _black;
+
+    public void BlackOn()
+    {
+        _black.DORestartById("Black-On");
+    }
+
+    string[] _titleSting = 
+        { "<size=60>°Ë°Ô ¹°µç</size>\r\nÀý¸ÁÀÇ ´ë¸¶¹ý»ç",
+        "<size=60>Èñ¸ÁÀ» ÀÒÀº</size>\r\nÀý¸ÁÀÇ ±â»ç",
+        "<size=60>¸ê¸ÁÇÑ ¿Õ±¹ÀÇ ¸¶Áö¸·</size>\r\nÀý¸ÁÀÇ ¿Õ"
+    };
 
     public void TitleOn(int num)
     {
-        _titles[num].DOPlayById("Phase-TitleFadeIn");
+        _title.GetComponent<Text>().text = _titleSting[num];
+        _title.DORestartById("Phase-TitleFadeIn");
     }
 
     public void LetterActive(bool isOn)

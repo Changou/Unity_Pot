@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Phase1Production : MonoBehaviour
+public class Phase1Production : PhaseProduction
 {
     [Header("플레이어 애니메이션 연출")]
     [SerializeField] Animator _animPlayer;
@@ -34,11 +34,12 @@ public class Phase1Production : MonoBehaviour
         }
     }
 
-    public void PhaseStart()
+    public override void PhaseStart()
     {
         GameManager._Inst.UnPause();
         _boss.transform.GetChild(0).GetComponent<LBPhase1>().enabled = true;
         _playerUI.SetActive(true);
         PhaseManager._Inst.PhaseSetting();
+        base.PhaseStart();
     }
 }

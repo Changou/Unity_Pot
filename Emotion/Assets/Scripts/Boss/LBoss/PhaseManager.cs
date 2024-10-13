@@ -22,7 +22,7 @@ public class PhaseManager : MonoBehaviour
     //}
 
     [Header("페이즈 연출")]
-    [SerializeField] Phase2Production _phase2P;
+    [SerializeField] PhaseProduction[] _production;
 
     public void PhaseEndAndNextPhase()
     {
@@ -30,14 +30,19 @@ public class PhaseManager : MonoBehaviour
         PhaseSetting();
     }
 
-    public void Phase2TitleOn()
+    public void PhaseTitleOn()
     {
-        _phase2P.TitleOn();
+        _production[_currentPhase].TitleOn();
     }
 
-    public void Phase2Start()
+    public void ProductionStart()
     {
-        _phase2P.Phase2PStart();
+        _production[_currentPhase].gameObject.SetActive(true);
+    }
+    
+    public void PhaseStart()
+    {
+        _production[_currentPhase - 1].PhaseStart();
     }
 
     public void PhaseSetting()

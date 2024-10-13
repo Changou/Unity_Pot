@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,8 +25,14 @@ public class GameManager : MonoBehaviour
         _isPause = false;
     }
 
+    [SerializeField] LetterBox _letter;
     public void GameOver()
     {
-        Pause();
+        _letter.BlackOn();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
