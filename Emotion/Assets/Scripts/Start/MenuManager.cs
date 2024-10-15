@@ -25,9 +25,28 @@ public class MenuManager : MonoBehaviour
         {
             NextMenu();
         }
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        else if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             PrevMenu();
+        }
+        else if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SelectMenu();
+        }
+    }
+
+    [Header("페이드 인 아웃")]
+    [SerializeField] FadeInOut _fade;
+
+    void SelectMenu()
+    {
+        if(_currentMenu == 0)
+        {
+            _fade.FadeOut("LastBoss");
+        }
+        else
+        {
+            Application.Quit();
         }
     }
 

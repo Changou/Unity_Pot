@@ -13,12 +13,9 @@ public class LetterBox : MonoBehaviour
     [Header("타이틀")]
     [SerializeField] DOTweenAnimation _title;
 
-    [Header("엔딩 패널")]
-    [SerializeField] DOTweenAnimation _black;
-
     public void BlackOn()
     {
-        _black.DORestartById("Black-On");
+        GameManager._Inst.FadePanel();
     }
 
     string[] _titleSting = 

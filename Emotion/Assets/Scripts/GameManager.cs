@@ -28,11 +28,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] LetterBox _letter;
     public void GameOver()
     {
-        _letter.BlackOn();
+        FadePanel();
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    [SerializeField] FadeInOut _fade;
+
+    public void FadePanel()
+    {
+        _fade.FadeOut();
+        UIManager2._Inst.OnRestartButton();
     }
 }
