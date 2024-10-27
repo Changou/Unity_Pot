@@ -42,31 +42,27 @@ public class MenuManager : MonoBehaviour
     {
         if(_currentMenu == 0)
         {
-            _fade.FadeOut("LastBoss");
+            _fade.FadeOut("Tutorial");
         }
         else
         {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
+#endif
         }
     }
 
     void PrevMenu()
     {
-        _currentMenu--;
-        if (_currentMenu < 0)
-        {
-            _currentMenu = menu.Length - 1;
-        }
+        _currentMenu = --_currentMenu < 0 ? menu.Length - 1 : _currentMenu;
         MenuSetting();
     }
 
     void NextMenu()
     {
-        _currentMenu++;
-        if(_currentMenu > 2)
-        {
-            _currentMenu = 0;
-        }
+        _currentMenu = ++_currentMenu > (menu.Length - 1) ? 0 : _currentMenu;
         MenuSetting();
     }
     void MenuSetting()

@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class UIPanel_Enforce : UIBase
 {
-    [Header("무기 슬롯"), SerializeField] GameObject[] _weaponSlot;
+    [Header("무기 슬롯"), SerializeField] Slot[] _weaponSlot;
 
     [Header("[ 무기 정보 ]")]
-    [SerializeField] GameObject[] _weapons;
+    [SerializeField] WeaponBase[] _weapons;
 
     private void OnEnable()
     {
@@ -17,13 +17,13 @@ public class UIPanel_Enforce : UIBase
 
     void Setting()
     {
-        foreach(GameObject slot in _weaponSlot)
+        foreach(Slot slot in _weaponSlot)
         {
-            foreach(GameObject weapon in _weapons)
+            foreach(WeaponBase weapon in _weapons)
             {
-                if(weapon.GetComponent<WeaponBase>()._WType == slot.GetComponent<Slot>()._SlotType)
+                if(weapon._WType == slot._SlotType)
                 {
-                    if (weapon.GetComponent<WeaponBase>()._IsGet)
+                    if (weapon._IsGet)
                     {
                         slot.gameObject.SetActive(true);
                         break;

@@ -9,6 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: e7a4cff152e6ce74c8b23da38700c0ac
+  - enabled: 1
+    path: Assets/Scenes/Entrance.unity
+    guid: 6d510318b85f9074fa7998598588c752
+  - enabled: 1
+    path: Assets/Scenes/Dungeon.unity
+    guid: cd113e2a408aacd408c6f09cbde6acb0
+  - enabled: 1
+    path: Assets/Scenes/Boss1.unity
+    guid: 5e0c68491e19a094483e3f40c1c4974a
+  - enabled: 1
+    path: Assets/Scenes/Boss2.unity
+    guid: 3062d6ec303a89043add6d060e877a6a
+  - enabled: 1
+    path: Assets/Scenes/Boss3.unity
+    guid: c302c9038c9bac048812c692ca276605
+  - enabled: 1
     path: Assets/Scenes/LastBoss.unity
     guid: e3a19e4aae3f37c479a2eca8549ad282
   m_configObjects: {}

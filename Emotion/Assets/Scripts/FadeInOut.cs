@@ -10,7 +10,7 @@ public class FadeInOut : MonoBehaviour
     Image _fadeImage;
 
     [Header("페이드 비율"), SerializeField]
-    float _rate = 0.2f;
+    float _rate = 0.5f;
 
 
     [Header("씬 로드"), SerializeField]

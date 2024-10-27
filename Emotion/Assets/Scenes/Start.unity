@@ -2031,6 +2031,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4603333348910892787, guid: c29af629612594b428a59b920046f89d, type: 3}
+      propertyPath: _rate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603333348910892787, guid: c29af629612594b428a59b920046f89d, type: 3}
       propertyPath: _sceneLoader
       value: 
       objectReference: {fileID: 620726787}
