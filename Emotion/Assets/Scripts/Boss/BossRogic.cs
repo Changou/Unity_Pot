@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum BOSS_TYPE
@@ -46,9 +47,11 @@ public class BossRogic : LivingEntity
 
     void Direction()
     {
-        Vector3 dir = _target.position - transform.position;
-
-        Vector3 scale = new Vector3(dir.x > 0 ? -transform.localScale.x : transform.localScale.x, transform.localScale.y, 1);
+        Vector3 scale = transform.localScale;
+        if(scale.x != _target.localScale.x)
+        {
+            scale.x *= -1; 
+        }
         transform.localScale = scale;
     }
 
