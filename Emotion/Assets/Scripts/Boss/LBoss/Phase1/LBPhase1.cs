@@ -28,7 +28,7 @@ public class LBPhase1 : LivingEntity
 
     private void Start()
     {
-        OnDeath += () => {
+        _OnDeath += () => {
             StopCoroutine("Think");
             AllClear();
             _anim.SetTrigger("Die");
@@ -40,7 +40,7 @@ public class LBPhase1 : LivingEntity
 
     protected virtual IEnumerator Think()
     {
-        while (!IsDead)
+        while (!_IsDead)
         {
             if (!isDelay)
             {

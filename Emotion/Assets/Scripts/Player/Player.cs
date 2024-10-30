@@ -14,7 +14,6 @@ public class Player : LivingEntity
     Vector3 movement = new Vector3();
 
     Rigidbody2D rb;
-    Animator anim;
     Collider2D _coll;
 
     bool isAttack = false;
@@ -39,9 +38,10 @@ public class Player : LivingEntity
 
     float _stopMove = 1f;
 
-    private void Awake()
+    protected override void Awake()
     {
-        anim = GetComponent<Animator>();
+        base.Awake();
+
         rb = GetComponent<Rigidbody2D>();
         _coll = GetComponent<Collider2D>();
         _AttackPoint.enabled = false;
@@ -49,9 +49,8 @@ public class Player : LivingEntity
     }
     private void Start()
     {
-        OnDeath += () =>
+        _OnDeath += () =>
         {
-            anim.SetTrigger("Die");
             GameManager._Inst.Pause();
             UIManager2._Inst.AllHide();
         };
@@ -65,6 +64,8 @@ public class Player : LivingEntity
     }
     void Update()
     {
+        if (_IsDead) return;
+
         if (!GameManager._Inst._IsPause && !isAttack)
         {
             if (MoveController.i._LeftClick && rb.velocity.y == 0)
@@ -80,7 +81,7 @@ public class Player : LivingEntity
                 }
                 if (rb.velocity.y != 0)
                 {
-                    anim.SetFloat("jumpVel", rb.velocity.y);
+                    _anim.SetFloat("jumpVel", rb.velocity.y);
 
                 }
                 WeaponChange();
@@ -142,9 +143,9 @@ public class Player : LivingEntity
                 _myTrans.localScale = new Vector3(_myTrans.localScale.x * (-1), _myTrans.localScale.y, 1); 
             }
             if (rb.velocity.y == 0)
-                anim.SetBool("isMove", true);
+                _anim.SetBool("isMove", true);
         }
-        else anim.SetBool("isMove", false);
+        else _anim.SetBool("isMove", false);
 
         _myTrans.position += movement * playerInfo._Speed * Time.deltaTime * _stopMove;
     }
@@ -152,8 +153,8 @@ public class Player : LivingEntity
     void Attack() //АјАн
     {
         if (playerInfo._WeaponState == WEAPON.NORMAL)
-        {   
-            anim.SetTrigger("Attack");
+        {
+            _anim.SetTrigger("Attack");
             isAttack = true;
         }
         else if(playerInfo._WeaponState == WEAPON.SWORD)
@@ -186,7 +187,7 @@ public class Player : LivingEntity
         if (MoveController.i._RightClick && _DashTime == 0)
         {
             playerInfo.OnDash();
-            anim.SetBool("isDash", true);
+            _anim.SetBool("isDash", true);
             _DashTime = playerInfo._DashTime;
         }
         else if(_DashTime > 0)
@@ -196,7 +197,7 @@ public class Player : LivingEntity
         else if(_DashTime < 0)
         {
             _DashTime = 0f;
-            anim.SetBool("isDash", false);
+            _anim.SetBool("isDash", false);
             playerInfo.OffDash();
         }
     }
@@ -206,7 +207,7 @@ public class Player : LivingEntity
         if (rb.velocity.y == 0)
         {
             rb.AddForce(Vector3.up * playerInfo._JumpPower, ForceMode2D.Impulse);
-            anim.SetBool("isJump", true);
+            _anim.SetBool("isJump", true);
         }
     }
 
@@ -214,7 +215,7 @@ public class Player : LivingEntity
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            anim.SetBool("isJump", false);
+            _anim.SetBool("isJump", false);
             _coll.isTrigger = true;
         }
     }

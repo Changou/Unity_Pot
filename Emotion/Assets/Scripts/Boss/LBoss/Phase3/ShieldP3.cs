@@ -19,7 +19,7 @@ public class ShieldP3 : Shield
     {
         base.OnEnable();
 
-        _shieldSlider.value = Health;
+        _shieldSlider.value = _Health;
     }
 
     public override void Die()

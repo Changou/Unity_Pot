@@ -21,7 +21,7 @@ public class BossMad : BossRogic
 
     protected override IEnumerator Think()
     {
-        while (!IsDead)
+        while (!_IsDead)
         {
             if (!isDelay)
             {

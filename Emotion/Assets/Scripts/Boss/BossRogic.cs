@@ -27,8 +27,16 @@ public class BossRogic : LivingEntity
 
     protected bool isDelay = false;
 
-    private void Awake()
+    Collider2D _coll;
+    Rigidbody2D _rb;
+
+    protected override void Awake()
     {
+        _coll = GetComponent<Collider2D>();
+        _rb = GetComponent<Rigidbody2D>();
+
+        base.Awake();
+
         foreach(Pattern pattern in _pattern)
         {
             pattern.PatternOn(false);
@@ -37,6 +45,12 @@ public class BossRogic : LivingEntity
 
     private void Start()
     {
+        _OnDeath += () => 
+        {
+            _coll.enabled = false;
+            _rb.gravityScale = 0;
+            StopAllCoroutines();
+        };
         StartCoroutine(Think());
     }
 
@@ -47,34 +61,32 @@ public class BossRogic : LivingEntity
 
     void Direction()
     {
-        Vector3 scale = transform.localScale;
-        if(scale.x != _target.localScale.x)
+        Vector3 dir = _target.position - transform.position;
+        if(dir.normalized.x < 0 && transform.localScale.x < 0)
         {
-            scale.x *= -1; 
+            transform.localScale = Vector3.one;
         }
-        transform.localScale = scale;
+        else if(dir.normalized.x > 0 && transform.localScale.x > 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
     protected virtual IEnumerator Think()
     {
-        while (!IsDead)
+        while (!_IsDead)
         {
             if (!isDelay)
             {
-                int ran = Random.Range(0, 6);
-                switch (ran)
+                int ran;
+                while (true)
                 {
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                        _pattern[0].PatternOn(true);
+                    ran = Random.Range(0, _pattern.Length);
+                    if (!_pattern[ran].isActiveAndEnabled)
                         break;
-                    case 4:
-                    case 5:
-                        _pattern[1].PatternOn(true);
-                        break;
+                    yield return null;
                 }
+                _pattern[ran].PatternOn(true);
                 StartCoroutine(CoolTime());
             }
             yield return null;

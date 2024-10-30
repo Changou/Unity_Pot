@@ -7,41 +7,53 @@ public class LivingEntity : MonoBehaviour, IDamageable
 {
     public float _startingHealth = 100f;
 
-    public float Health {  get; protected set; }
-    public bool IsDead {  get; protected set; }
-    public event Action OnDeath;
+    public float _Health {  get; protected set; }
+    public bool _IsDead {  get; protected set; }
+    public event Action _OnDeath;
 
     [SerializeField] protected SpriteRenderer _sprite;
 
     Coroutine _cor;
 
+    protected Animator _anim;
+
+    protected virtual void Awake()
+    {
+        _anim = GetComponentInChildren<Animator>();
+    }
+
     protected virtual void OnEnable()
     {
-        IsDead = false;
+        _IsDead = false;
 
-        Health = _startingHealth;
+        _Health = _startingHealth;
     }
 
     public virtual void Die()
     {
-        if(OnDeath != null) OnDeath();
+        _anim.SetTrigger("Death");
+        if(_OnDeath != null) _OnDeath();
 
-        IsDead = true;
+        _IsDead = true;
     }
 
     public virtual void OnDamage(float damage)
     {
-        if (IsDead) return;
+        if (_IsDead) return;
 
         if (_cor == null)
         {
-            Health -= damage;
+            _Health -= damage;
             if(_sprite != null)
                 _cor = StartCoroutine(DamageColor());
         }
 
-        if (Health <= 0f)
+        if (_Health <= 0f)
+        {
             Die();
+            return;
+        }
+        _anim.SetTrigger("Damage");
     }
 
     [Header("ÇÇ°Ý ±ôºýÀÓ È½¼ö"), SerializeField] int _damageBlink; 

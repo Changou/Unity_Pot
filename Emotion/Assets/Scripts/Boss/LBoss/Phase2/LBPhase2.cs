@@ -23,7 +23,7 @@ public class LBPhase2 : LivingEntity
     // Start is called before the first frame update
     void Start()
     {
-        OnDeath += () =>
+        _OnDeath += () =>
         {
             StopCoroutine("Rogic");
             AllClear();
@@ -34,7 +34,7 @@ public class LBPhase2 : LivingEntity
 
     IEnumerator Rogic()
     {
-        while (!IsDead)
+        while (!_IsDead)
         {
             yield return new WaitForSeconds(_actTime);
             int num;

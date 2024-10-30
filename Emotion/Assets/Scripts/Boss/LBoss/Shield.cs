@@ -22,7 +22,7 @@ public class Shield : LivingEntity
     {
         base.OnDamage(damage);
 
-        _shieldSlider.value = Health;
+        _shieldSlider.value = _Health;
     }
 
     public override void Die()

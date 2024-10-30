@@ -10,13 +10,21 @@ public class BossAttack : Pattern
     [SerializeField] GameObject _arrow;
     [SerializeField] float _omenDelay = 1f;
 
-
     Vector3 tmp;
 
     bool _patternStart = false;
 
-    private void OnEnable()
+    Animator _anim;
+
+    private void Awake()
     {
+        _anim = GetComponentInChildren<Animator>();
+    }
+
+    protected override void OnEnable()
+    {
+        _patternStart = false;
+
         tmp = _target.position;
         tmp.y = transform.position.y;
 
@@ -38,18 +46,18 @@ public class BossAttack : Pattern
     {
         if (!_patternStart) return;
 
-        Attack();
+        Attacker();
     }
 
     IEnumerator Omen()
     {
-        _patternStart = false;
         yield return new WaitForSeconds(_omenDelay);
         _arrow.SetActive(false);
         _patternStart = true;
+        _anim.SetTrigger("Attack");
     }
 
-    protected virtual void Attack()
+    void Attacker()
     {
         if(transform.position == tmp)
         {

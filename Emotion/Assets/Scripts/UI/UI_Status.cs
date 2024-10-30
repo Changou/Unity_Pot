@@ -17,12 +17,12 @@ public class UI_Status : UIBase
     private void Awake()
     {
         hp.maxValue = _playerHp._startingHealth;
-        hp.value = _playerHp.Health;
+        hp.value = _playerHp._Health;
     }
 
     private void Update()
     {
-        hp.value = _playerHp.Health;
+        hp.value = _playerHp._Health;
         Setting();
     }
     void Setting()

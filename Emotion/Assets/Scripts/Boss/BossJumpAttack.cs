@@ -16,12 +16,15 @@ public class BossJumpAttack : Pattern
 
     bool isAttack = false;
 
+    Animator _anim;
+
     private void Awake()
     {
-        _rb = GetComponentInParent<Rigidbody2D>();
+        _anim = GetComponentInChildren<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         isAttack = false;
         StartCoroutine(Omen());
@@ -31,7 +34,7 @@ public class BossJumpAttack : Pattern
     {
         if(_rb.velocity.y < 0 && !isAttack)
         {
-            Attack();
+            Attacker();
         }
     }
 
@@ -43,8 +46,9 @@ public class BossJumpAttack : Pattern
         JumpAttack();
     }
 
-    void Attack()
+    void Attacker()
     {
+        _anim.SetTrigger("Attack");
         dir = _target.position - transform.position;
         isAttack = true;
         _rb.AddForce(dir * _rushPower, ForceMode2D.Impulse);

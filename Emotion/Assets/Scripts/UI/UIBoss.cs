@@ -22,7 +22,7 @@ public class UIBoss : UIBase
 
     public void UpdateUI()
     {
-        _hpSlider.value = _boss.Health;
+        _hpSlider.value = _boss._Health;
     }
 
 }

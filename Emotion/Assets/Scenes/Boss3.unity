@@ -266,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &196440096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,11 +610,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8527507798575124858, guid: 4968b1ebaa6e50b4ebd9abf903613e70, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8527507798575124858, guid: 4968b1ebaa6e50b4ebd9abf903613e70, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8527507798575124858, guid: 4968b1ebaa6e50b4ebd9abf903613e70, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1846,6 +1846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingHealth: 100
   _sprite: {fileID: 0}
+  _damageBlink: 0
   _bossType: 2
   _skillDelay: 2
   _pattern:
@@ -1890,6 +1891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _my: {fileID: 1576088093}
+  _patternTime: 0
   _target: {fileID: 4743720296059647681}
   _delay: 1
   _lineWidth: 1.5
@@ -2010,6 +2012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _my: {fileID: 1576088095}
+  _patternTime: 0
   _target: {fileID: 4743720296059647681}
   _delay: 1
   _lineWidth: 1.5
@@ -2026,6 +2029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _my: {fileID: 1576088096}
+  _patternTime: 0
   _spawnPoints:
   - {fileID: 390212747}
   - {fileID: 502871512}
@@ -2346,14 +2350,14 @@ PrefabInstance:
     - target: {fileID: 6949381377067889849, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: _boss
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1576088091}
     - target: {fileID: 7379628782662406681, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7379628782662406681, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8010824432848758903, guid: 7f84cc0b9222cc74a8c79b84f0621c94, type: 3}
       propertyPath: m_Pivot.x

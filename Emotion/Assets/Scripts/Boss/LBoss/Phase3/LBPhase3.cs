@@ -26,19 +26,11 @@ public class LBPhase3 : LivingEntity
 
     Coroutine _rogic;
 
-    Animator _anim;
-
-    private void Awake()
-    {
-        _anim = GetComponent<Animator>();
-    }
-
     void Start()
     {
-        OnDeath += () => 
+        _OnDeath += () => 
         {
             StopCoroutine(_rogic);
-            _anim.SetTrigger("Die");
             UIManager2._Inst.AllHide();
             AllClear();
             GameManager._Inst.Pause();
@@ -48,7 +40,7 @@ public class LBPhase3 : LivingEntity
 
     IEnumerator Rogic()
     {
-        while (!IsDead)
+        while (!_IsDead)
         {
             yield return new WaitForSeconds(_actTime);
             int num;
@@ -70,7 +62,7 @@ public class LBPhase3 : LivingEntity
     // Update is called once per frame
     void Update()
     {
-        if(Health <= _startingHealth / 2 && _dPattern != null)
+        if(_Health <= _startingHealth / 2 && _dPattern != null)
         {
             StopCoroutine(_rogic);
             PatternAllStop();
