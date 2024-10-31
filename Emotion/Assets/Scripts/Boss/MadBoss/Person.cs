@@ -9,7 +9,9 @@ public class Person : MonoBehaviour
     [SerializeField] Transform _target;
     [SerializeField] float _speed;
     [SerializeField] float _chaseSpeed;
-    
+    [SerializeField] float _life;
+    [SerializeField] float _damage;
+
     public bool _isAttack;
 
     Rigidbody2D _rb;
@@ -17,7 +19,7 @@ public class Person : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _target = FindAnyObjectByType<Player>().transform.parent;
+        _target = FindObjectOfType<Player>().transform.parent;
     }
 
     private void Start()
@@ -71,5 +73,23 @@ public class Person : MonoBehaviour
     void FlyAttack()
     {
         _rb.AddRelativeForce(Vector2.up * _speed , ForceMode2D.Force);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IDamageable target = collision.GetComponent<IDamageable>();
+        if (target != null)
+        {
+            target.OnDamage(_damage);
+        }
+    }
+
+    private void OnDisable()
+    {
+        BossMad mad = FindObjectOfType<BossMad>();
+        if (mad != null)
+        {
+            mad.OnDamage(_life);
+        }
     }
 }

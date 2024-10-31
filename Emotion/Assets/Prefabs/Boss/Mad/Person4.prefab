@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 737616407268579668}
   - component: {fileID: 2330284437374108225}
   - component: {fileID: 1228082215927411979}
-  m_Layer: 0
+  - component: {fileID: 46803668156411894}
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +165,30 @@ MonoBehaviour:
   _target: {fileID: 0}
   _speed: 5
   _chaseSpeed: 3
+  _life: 2
+  _damage: 10
   _isAttack: 0
+--- !u!95 &46803668156411894
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831608481989175482}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e8dcd1fafc2296f4eae0a4836ba1bea2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5758282374079757341
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2711158252738599481}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Person4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

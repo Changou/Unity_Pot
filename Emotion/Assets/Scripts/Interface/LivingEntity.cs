@@ -53,7 +53,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
             Die();
             return;
         }
-        _anim.SetTrigger("Damage");
+        if(_anim != null)
+            _anim.SetTrigger("Damage");
     }
 
     [Header("ÇÇ°Ý ±ôºýÀÓ È½¼ö"), SerializeField] int _damageBlink; 

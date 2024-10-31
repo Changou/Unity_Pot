@@ -10,7 +10,7 @@ public class MagicDamage : MonoBehaviour
     {
         IDamageable target = collision.GetComponent<IDamageable>();
 
-        if(target != null )
+        if( target != null )
         {
             target.OnDamage(_damage);
         }

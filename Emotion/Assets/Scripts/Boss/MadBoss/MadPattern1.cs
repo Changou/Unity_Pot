@@ -17,7 +17,7 @@ public class MadPattern1 : Pattern
         _warningLine = GetComponent<LineRenderer>();
     }
 
-    protected virtual void OnEnable()
+    protected override void OnEnable()
     {
         dir = Random.Range(0, 2) == 0 ? -1 : 1;
 
