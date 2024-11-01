@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class D_Monster : MonoBehaviour
+public class D_Monster : LivingEntity
 {
     public enum M_STATE
     {
@@ -20,20 +20,32 @@ public class D_Monster : MonoBehaviour
 
     [SerializeField] float _detectionDis = 5f;
 
-    Animator _anim;
+    Collider2D _coll;
 
     float _time = 0;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _state = M_STATE.IDLE;
-        _anim = GetComponent<Animator>();
+        _coll = GetComponent<Collider2D>();
+        _OnDeath += () =>
+        {
+            _coll.enabled = false;
+        };
 
+    }
+
+    public void MonsterDeath()
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_IsDead) return;
+
         if(_state == M_STATE.IDLE || _state == M_STATE.MOVE)
         {
             AIMove();

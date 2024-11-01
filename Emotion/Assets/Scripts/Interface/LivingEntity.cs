@@ -31,7 +31,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     public virtual void Die()
     {
-        _anim.SetTrigger("Death");
+        if(_anim != null)
+            _anim.SetTrigger("Death");
         if(_OnDeath != null) _OnDeath();
 
         _IsDead = true;
