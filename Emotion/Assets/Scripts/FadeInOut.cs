@@ -67,7 +67,13 @@ public class FadeInOut : MonoBehaviour
 
     public void FadeOut(string name = "")
     {
+        GameManager._Inst.SaveGameInfo();
         StopAllCoroutines();
         StartCoroutine(CRT_FadeInOut(false, _rate, name));
+    }
+
+    public void InBossStage()
+    {
+        FadeOut(PlayerPrefs.GetString("Dungeon"));
     }
 }

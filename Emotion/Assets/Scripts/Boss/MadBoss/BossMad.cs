@@ -40,5 +40,15 @@ public class BossMad : BossRogic
         person.transform.rotation = Quaternion.Euler(rot);
         person.GetComponentInChildren<Person>()._isAttack = false;
     }
+    protected override void DieAct()
+    {
+        GameObject[] p = GameObject.FindGameObjectsWithTag("Projectile");
+        for(int i = 0; i< p.Length; i++)
+        {
+            Destroy(p[i]);
+        }
 
+        GameManager._Inst.Pause();
+        UIManager._Inst.Clear_UI();
+    }
 }

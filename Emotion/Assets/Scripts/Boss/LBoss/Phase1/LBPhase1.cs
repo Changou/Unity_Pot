@@ -15,9 +15,7 @@ public class LBPhase1 : LivingEntity
 
     protected bool isDelay = false;
 
-    Animator _anim;
-
-    private void Awake()
+    protected override void Awake()
     {
         foreach (Pattern pattern in _pattern)
         {
@@ -31,7 +29,6 @@ public class LBPhase1 : LivingEntity
         _OnDeath += () => {
             StopCoroutine("Think");
             AllClear();
-            _anim.SetTrigger("Die");
             PhaseManager._Inst.ProductionStart();
         };
         StartCoroutine(Think());
@@ -68,7 +65,7 @@ public class LBPhase1 : LivingEntity
     public override void OnDamage(float damage)
     {
         base.OnDamage(damage);
-        _anim.SetTrigger("Hurt");
+        _anim.SetTrigger("Damage");
     }
 
     public void AllClear()
@@ -97,12 +94,5 @@ public class LBPhase1 : LivingEntity
         Destroy(fire, 3f);
         Invoke("Boss2Active",3f);
         _sprite.enabled = false;
-    }
-    void Boss2Active()
-    {
-        PhaseManager._Inst.PhaseTitleOn();
-        PhaseManager._Inst.PhaseEndAndNextPhase();
-
-        UIManager2._Inst.AllHide();
     }
 }

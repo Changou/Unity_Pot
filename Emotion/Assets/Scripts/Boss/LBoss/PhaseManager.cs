@@ -14,21 +14,10 @@ public class PhaseManager : MonoBehaviour
     [Header("페이즈 상태")]
     [SerializeField] int _currentPhase = 1;
     [SerializeField] GameObject[] _phaseBoss;
-    [SerializeField] GameObject[] _phaseUI;
-
-    //private void Start()
-    //{
-    //    PhaseSetting();
-    //}
+    [SerializeField] UIBase[] _phaseUI;
 
     [Header("페이즈 연출")]
     [SerializeField] PhaseProduction[] _production;
-
-    public void PhaseEndAndNextPhase()
-    {
-        _currentPhase++;
-        PhaseSetting();
-    }
 
     public void PhaseTitleOn()
     {
@@ -37,7 +26,8 @@ public class PhaseManager : MonoBehaviour
 
     public void ProductionStart()
     {
-        _production[_currentPhase].gameObject.SetActive(true);
+        SoundManager._Inst.StopAllBGM();
+        _production[_currentPhase++].gameObject.SetActive(true);
     }
     
     public void PhaseStart()
@@ -52,11 +42,11 @@ public class PhaseManager : MonoBehaviour
             if (i == _currentPhase - 1)
             {
                 _phaseBoss[i].SetActive(true);
-                _phaseUI[i].SetActive(true);
+                _phaseUI[i].Show(true);
                 continue;
             }
             _phaseBoss[i].SetActive(false);
-            _phaseUI[i].SetActive(false);
+            _phaseUI[i].Show(false);
         }
     }
 }

@@ -29,6 +29,9 @@ public class Bow : WeaponBase
         if (!isShot)
         {
             GameObject arrow = Instantiate(prefab);
+
+            arrow.GetComponent<Arrow>()._damage = _ATK + (_LV * 2);
+
             arrow.transform.SetParent(transform.GetChild(0));
             arrow.transform.localPosition = Vector3.zero;
             if (transform.parent.parent.localScale.x < 0)

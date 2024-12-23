@@ -17,7 +17,7 @@ public class Phase3Production : PhaseProduction
     {
         GameManager._Inst.Pause();
         _letter.LetterActive(false);
-        UIManager2._Inst.AllHide();
+        UIManager._Inst.HideAll();
         _light.DORestartById("Light-On");
     }
 

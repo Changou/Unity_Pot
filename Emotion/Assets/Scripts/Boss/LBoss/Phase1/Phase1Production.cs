@@ -13,8 +13,14 @@ public class Phase1Production : PhaseProduction
     [Header("보스 애니메이션 연출")]
     [SerializeField] DOTweenAnimation _boss;
     // Start is called before the first frame update
+
+    [Header("Bgm")]
+    [SerializeField] string _name;
+
     void Start()
     {
+        SoundManager._Inst.PlayBGM(_name);
+        _playerUI.SetActive(false);
         GameManager._Inst.Pause();
         _player.DOPlayById("Phase1-Appeared");
     }

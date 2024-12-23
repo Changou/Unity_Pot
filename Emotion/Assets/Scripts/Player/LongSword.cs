@@ -49,7 +49,7 @@ public class LongSword : WeaponBase
 
         if(target != null)
         {
-            target.OnDamage(_ATK);
+            target.OnDamage(_ATK + (_LV * 2));
         }
     }
 }

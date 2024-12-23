@@ -9,8 +9,6 @@ public class LBPhase3 : LivingEntity
     [Header("즉사패턴"), SerializeField] Pattern _dPattern;
     [Header("플레이어 감지"), SerializeField] DetectionArea _detected;
 
-    bool _isRogicOn = true;
-
     enum PHASE3
     {
         MOVE,
@@ -30,10 +28,7 @@ public class LBPhase3 : LivingEntity
     {
         _OnDeath += () => 
         {
-            StopCoroutine(_rogic);
-            UIManager2._Inst.AllHide();
-            AllClear();
-            GameManager._Inst.Pause();
+            EndGame();
         };
         _rogic = StartCoroutine(Rogic());
     }
@@ -72,6 +67,10 @@ public class LBPhase3 : LivingEntity
 
     public void EndGame()
     {
+        StopCoroutine(_rogic);
+        UIManager._Inst.HideAll();
+        AllClear();
+        GameManager._Inst.Pause();
         PhaseManager._Inst.ProductionStart();
     }
 

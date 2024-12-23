@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wizard : MonoBehaviour
+public class Wizard : LivingEntity
 {
     public enum TYPE
     {
@@ -10,8 +10,6 @@ public class Wizard : MonoBehaviour
         ATTACK,
         DIE
     }
-
-    Animator _anim;
 
     [SerializeField] TYPE _type = TYPE.IDLE;
 
@@ -22,9 +20,19 @@ public class Wizard : MonoBehaviour
 
     [SerializeField] DetectionCollV2 _detection;
 
-    private void Awake()
+    [Header("Å¸°Ù")] 
+    [SerializeField]Transform _target;
+
+    [SerializeField] int _exp;
+
+    protected override void Awake()
     {
         _anim = GetComponent<Animator>();
+        _OnDeath += () =>
+        {
+            _target.GetComponentInChildren<PlayerInfo>().WeaponExpUp(_exp);
+            Destroy(transform.parent.gameObject);
+        };
     }
 
     private void Update()

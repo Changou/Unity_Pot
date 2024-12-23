@@ -23,7 +23,7 @@ public class UIPanel_Enforce : UIBase
             {
                 if(weapon._WType == slot._SlotType)
                 {
-                    if (weapon._IsGet)
+                    if (weapon._isGet)
                     {
                         slot.gameObject.SetActive(true);
                         break;

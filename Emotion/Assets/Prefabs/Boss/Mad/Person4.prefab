@@ -165,7 +165,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _speed: 5
   _chaseSpeed: 3
-  _life: 2
+  _life: 5
   _damage: 10
   _isAttack: 0
 --- !u!95 &46803668156411894
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 2711158252738599481}
   m_Layer: 13
   m_Name: Person4
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

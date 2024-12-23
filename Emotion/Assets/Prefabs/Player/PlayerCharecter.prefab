@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\uBAA8\uD5D8\uAC00\uC758 \uAC80"
   _atk: 10
-  _exp: 50
-  _lv: 0
+  _exp: 0
+  _lv: 1
   _wType: 0
   _delay: 1
   _isGet: 1
@@ -131,8 +131,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 171923219
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -181,7 +181,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.5
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingHealth: 100
   _sprite: {fileID: 758686841604329261}
+  _damageBlink: 0
   playerInfo: {fileID: 1612252027778119066}
   _myTrans: {fileID: 3016982122080734860}
   _AttackPoint: {fileID: 9078729149620778860}
@@ -273,13 +274,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9346a3b9257b6034884736c952c2c51e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 0
   speed: 5
   jumpPower: 13
   dashPower: 40
   dashTime: 0.1
-  attackDelay: 0.4
   weaponState: 0
+  _weapon:
+  - {fileID: 1717269130667604017}
+  - {fileID: 2900445815209929554}
+  - {fileID: 4457842143535291366}
+  - {fileID: 7382276233248660267}
 --- !u!1 &3052057202715667064
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,9 +330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\uAE30\uC068\uC758 \uD654\uC0B4"
-  _atk: 0
-  _exp: 100
-  _lv: 3
+  _atk: 5
+  _exp: 0
+  _lv: 1
   _wType: 2
   _delay: 0.5
   _isGet: 1
@@ -346,7 +350,7 @@ GameObject:
   - component: {fileID: 2900445815209929554}
   - component: {fileID: 6471081417203794246}
   m_Layer: 10
-  m_Name: Sprite
+  m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,9 +436,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\uBD84\uB178\uC758 \uB300\uAC80"
-  _atk: 0
-  _exp: 95
-  _lv: 0
+  _atk: 15
+  _exp: 0
+  _lv: 1
   _wType: 1
   _delay: 0
   _isGet: 0
@@ -575,8 +579,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\uC2AC\uD514\uC758 \uC644\uB4DC"
-  _atk: 0
-  _exp: 30
+  _atk: 7
+  _exp: 0
   _lv: 1
   _wType: 3
   _delay: 0.7

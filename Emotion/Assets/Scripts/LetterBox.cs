@@ -15,7 +15,7 @@ public class LetterBox : MonoBehaviour
 
     public void BlackOn()
     {
-        GameManager._Inst.FadePanel();
+        //GameManager._Inst.FadePanel();
     }
 
     string[] _titleSting = 

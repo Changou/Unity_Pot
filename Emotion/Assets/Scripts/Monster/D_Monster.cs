@@ -15,25 +15,34 @@ public class D_Monster : LivingEntity
     [Header("∏ÛΩ∫≈Õ"), SerializeField] M_STATE _state;
     [SerializeField] float _ActDelay = 3f;
     [SerializeField] float _speed = 2f;
+    [SerializeField] int _exp;
+    [SerializeField] int _damage = 5;
 
     [Header("≈∏∞Ÿ")] Transform _target;
 
     [SerializeField] float _detectionDis = 5f;
 
-    Collider2D _coll;
-
     float _time = 0;
 
     protected override void Awake()
     {
-        base.Awake();
+        _anim = GetComponent<Animator>();
         _state = M_STATE.IDLE;
-        _coll = GetComponent<Collider2D>();
         _OnDeath += () =>
         {
-            _coll.enabled = false;
+            _target.GetComponentInChildren<PlayerInfo>().WeaponExpUp(_exp);
+            MonsterDeath();
         };
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IDamageable target = collision.GetComponent<IDamageable>();
+        if(target != null)
+        {
+            target.OnDamage(_damage);
+        }
     }
 
     public void MonsterDeath()

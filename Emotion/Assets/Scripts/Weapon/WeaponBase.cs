@@ -20,19 +20,31 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] int _exp;
     [SerializeField] int _lv;
     [SerializeField] WEAPON_TYPE _wType;
-    [SerializeField] protected float _delay;
-    [SerializeField] bool _isGet = false;
+    [SerializeField] public float _delay;
+    [SerializeField] public bool _isGet = false;
 
     public string _Name => _name;
     public int _ATK => _atk;
-    public int _EXP => _exp;
-    public int _LV => _lv;
+    public int _EXP
+    {
+        get { return _exp; }
+        set { _exp = value; }
+    }
+    public int _LV
+    {
+        get { return _lv; }
+        set { _lv = value; }
+    }
     public WEAPON_TYPE _WType => _wType;
-    public bool _IsGet => _isGet;
 
     public void Enforce()
     {
         _lv++;
         _exp = 0;
+    }
+
+    public void ExpUp(int i)
+    {
+        _exp = (_exp + i) > 100 ? 100 : _exp + i;
     }
 }

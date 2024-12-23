@@ -12,7 +12,7 @@ public class AttackPoint : MonoBehaviour
 
         if(damage != null)
         {
-            damage.OnDamage(_weapon._ATK);
+            damage.OnDamage(_weapon._ATK + (_weapon._LV * 2));
         }
     }
 }

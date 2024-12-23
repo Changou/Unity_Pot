@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager._Inst.PlayBGM("StartPage");
         _currentMenu = 0;
         MenuSetting();
     }

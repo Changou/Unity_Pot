@@ -52,16 +52,13 @@ public class Player : LivingEntity
         _OnDeath += () =>
         {
             GameManager._Inst.Pause();
-            UIManager2._Inst.AllHide();
+            UIManager._Inst.Die_UI();
         };
         rb.gravityScale = 0f;
         _coll.isTrigger = true;
     }
 
-    void EndGame()
-    {
-        GameManager._Inst.GameOver();
-    }
+
     void Update()
     {
         if (_IsDead) return;
@@ -76,7 +73,7 @@ public class Player : LivingEntity
             {
                 if (MoveController.i._MoveY > 0)
                 {
-                    rb.gravityScale = 1.5f;
+                    rb.gravityScale = 1.8f;
                     Jump();
                 }
                 if (rb.velocity.y != 0)
@@ -154,6 +151,7 @@ public class Player : LivingEntity
     {
         if (playerInfo._WeaponState == WEAPON.NORMAL)
         {
+            OnAttack();
             _anim.SetTrigger("Attack");
             isAttack = true;
         }
@@ -169,6 +167,14 @@ public class Player : LivingEntity
         {
             wand.Shot();
         }
+        StartCoroutine(AttackDelay(playerInfo.WeaponDelay()));
+    }
+
+    IEnumerator AttackDelay(float i)
+    {
+        yield return new WaitForSeconds(i);
+        isAttack = false;
+        _AttackPoint.enabled = false;
     }
 
     public void OnAttack()

@@ -6,8 +6,8 @@ using UnityEngine;
 public enum BOSS_TYPE
 {
     ANGER,
-    SAD,
     MADNESS,
+    SAD,
 
     MAX
 }
@@ -47,12 +47,25 @@ public class BossRogic : LivingEntity
     {
         _OnDeath += () => 
         {
-            _coll.enabled = false;
-            _rb.gravityScale = 0;
-            StopAllCoroutines();
+            DieAct();
         };
         StartCoroutine(Think());
     }
+
+    protected virtual void DieAct()
+    {
+        foreach (Pattern pattern in _pattern)
+        {
+            pattern.PatternOn(false);
+        }
+        _coll.enabled = false;
+        _rb.gravityScale = 0f;
+        _rb.velocity = Vector2.zero;
+        StopAllCoroutines();
+        GameManager._Inst.Pause();
+        UIManager._Inst.Clear_UI();
+    }
+
 
     protected virtual void Update()
     {

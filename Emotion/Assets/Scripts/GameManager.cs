@@ -25,21 +25,18 @@ public class GameManager : MonoBehaviour
         _isPause = false;
     }
 
-    [SerializeField] LetterBox _letter;
-    public void GameOver()
-    {
-        FadePanel();
-    }
+    [SerializeField] PlayerInfo _playerInfo;
 
-    public void RestartGame()
+    public void SaveGameInfo()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    [SerializeField] FadeInOut _fade;
+        PlayerPrefs.SetInt("NormalEXP", _playerInfo.WeaponExp(WEAPON.NORMAL));
+        PlayerPrefs.SetInt("SwordEXP", _playerInfo.WeaponExp(WEAPON.SWORD));
+        PlayerPrefs.SetInt("BowEXP", _playerInfo.WeaponExp(WEAPON.ARROW));
+        PlayerPrefs.SetInt("WandEXP", _playerInfo.WeaponExp(WEAPON.WAND));
 
-    public void FadePanel()
-    {
-        _fade.FadeOut();
-        UIManager2._Inst.OnRestartButton();
+        PlayerPrefs.SetInt("NormalLevel", _playerInfo.WeaponLevel(WEAPON.NORMAL));
+        PlayerPrefs.SetInt("SwordLevel", _playerInfo.WeaponLevel(WEAPON.SWORD));
+        PlayerPrefs.SetInt("BowLevel", _playerInfo.WeaponLevel(WEAPON.ARROW));
+        PlayerPrefs.SetInt("WandLevel", _playerInfo.WeaponLevel(WEAPON.WAND));
     }
 }

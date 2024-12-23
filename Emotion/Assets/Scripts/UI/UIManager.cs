@@ -48,11 +48,23 @@ public class UIManager : MonoBehaviour
         _ui[(int)_type].Show(false);
     }
 
-    void HideAll()
+    public void HideAll()
     {
         foreach(UIBase ui in _ui)
         {
             ui.Show(false);
         }
+    }
+
+    [SerializeField] UIBase[] _uiends;
+
+    public void Clear_UI()
+    {
+        _uiends[0].Show(true);
+    }
+
+    public void Die_UI()
+    {
+        _uiends[1].Show(true);
     }
 }
