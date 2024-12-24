@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
 
     public void SaveGameInfo()
     {
+        PlayerPrefs.SetInt("Sword", _playerInfo.IsWeaponGet((int)WEAPON.SWORD) ? 1 : 0);
+        PlayerPrefs.SetInt("Bow", _playerInfo.IsWeaponGet((int)WEAPON.ARROW) ? 1 : 0);
+        PlayerPrefs.SetInt("Wand", _playerInfo.IsWeaponGet((int)WEAPON.WAND) ? 1 : 0);
+
         PlayerPrefs.SetInt("NormalEXP", _playerInfo.WeaponExp(WEAPON.NORMAL));
         PlayerPrefs.SetInt("SwordEXP", _playerInfo.WeaponExp(WEAPON.SWORD));
         PlayerPrefs.SetInt("BowEXP", _playerInfo.WeaponExp(WEAPON.ARROW));

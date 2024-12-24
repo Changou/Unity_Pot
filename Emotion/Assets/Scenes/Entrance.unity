@@ -3118,6 +3118,10 @@ PrefabInstance:
       propertyPath: _exp
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1717269130667604017, guid: bda220df35eaf4240a96e01a48ad7236, type: 3}
+      propertyPath: _delay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2900445815209929554, guid: bda220df35eaf4240a96e01a48ad7236, type: 3}
       propertyPath: _lv
       value: 1

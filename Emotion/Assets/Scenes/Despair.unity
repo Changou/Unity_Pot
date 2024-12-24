@@ -6556,6 +6556,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 77380368}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayBGM
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Phase3
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 406050052}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: HideAll
@@ -6579,18 +6591,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 77380368}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: PlayBGM
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Phase3
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1443333452}
         m_TargetAssemblyTypeName: DG.Tweening.DOTweenAnimation, Assembly-CSharp-firstpass
@@ -7102,6 +7102,10 @@ PrefabInstance:
       propertyPath: _letter
       value: 
       objectReference: {fileID: 664538043}
+    - target: {fileID: 2116682747944714774, guid: 17eb0c5284557b94c84e87e04a35d1d2, type: 3}
+      propertyPath: _playerInfo
+      value: 
+      objectReference: {fileID: 1171619143}
     - target: {fileID: 6641038996962758141, guid: 17eb0c5284557b94c84e87e04a35d1d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8456,7 +8460,7 @@ PrefabInstance:
       objectReference: {fileID: 1867362563}
     - target: {fileID: 1717269130667604017, guid: bda220df35eaf4240a96e01a48ad7236, type: 3}
       propertyPath: _atk
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1717269130667604017, guid: bda220df35eaf4240a96e01a48ad7236, type: 3}
       propertyPath: _delay

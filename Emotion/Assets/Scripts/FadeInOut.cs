@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
@@ -67,7 +68,9 @@ public class FadeInOut : MonoBehaviour
 
     public void FadeOut(string name = "")
     {
-        GameManager._Inst.SaveGameInfo();
+        if(SceneManager.GetActiveScene().name != "Start")
+            GameManager._Inst.SaveGameInfo();
+
         StopAllCoroutines();
         StartCoroutine(CRT_FadeInOut(false, _rate, name));
     }

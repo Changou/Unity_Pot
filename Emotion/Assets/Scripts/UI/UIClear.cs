@@ -36,16 +36,20 @@ public class UIClear : UIBase
         {
             case 0:
                 s = "대검";
+                _playerInfo.WeaponGet(WEAPON.SWORD);
                 break;
             case 1:
                 s = "활";
+                _playerInfo.WeaponGet(WEAPON.ARROW);
                 break;
             case 2:
                 s = "완드";
+                _playerInfo.WeaponGet(WEAPON.WAND);
                 break;
         }
         s += "을(를) 획득하였습니다.";
         _getWeapon.GetComponentInChildren<Text>().text = s;
+        
     }
 
     protected IEnumerator ClearP()

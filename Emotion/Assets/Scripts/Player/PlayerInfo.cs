@@ -49,6 +49,11 @@ public class PlayerInfo : MonoBehaviour
         return _weapon[(int)weaponState]._delay;
     }
 
+    public void WeaponGet(WEAPON w)
+    {
+        _weapon[(int)w]._isGet = true;
+    }
+
     public bool IsWeaponGet(int w)
     {
         return _weapon[w]._isGet;
