@@ -36,6 +36,19 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    void MenuSetting()
+    {
+        for (int i = 0; i < menu.Length; i++)
+        {
+            if (i == _currentMenu)
+                continue;
+            menu[i].GetComponent<Text>().color = Color.black;
+            menu[i].GetComponent<Text>().fontSize = 70;
+        }
+        menu[_currentMenu].GetComponent<Text>().color = Color.white;
+        menu[_currentMenu].GetComponent<Text>().fontSize = 80;
+    }
+
     [Header("페이드 인 아웃")]
     [SerializeField] FadeInOut _fade;
 
@@ -66,16 +79,5 @@ public class MenuManager : MonoBehaviour
         _currentMenu = ++_currentMenu > (menu.Length - 1) ? 0 : _currentMenu;
         MenuSetting();
     }
-    void MenuSetting()
-    {
-        for(int i = 0; i < menu.Length; i++)
-        {
-            if (i == _currentMenu)
-                continue;
-            menu[i].GetComponent<Text>().color = Color.black;
-            menu[i].GetComponent<Text>().fontSize = 70;
-        }
-        menu[_currentMenu].GetComponent<Text>().color = Color.white;
-        menu[_currentMenu].GetComponent<Text>().fontSize = 80;
-    }
+    
 }

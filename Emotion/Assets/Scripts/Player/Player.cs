@@ -92,7 +92,9 @@ public class Player : LivingEntity
     private void FixedUpdate()
     {
         Debug.DrawRay(rb.position, Vector2.down * _rayDist, new Color(0, 1, 0));
-        _rayHitGround = Physics2D.Raycast(rb.position, Vector2.down, _rayDist, LayerMask.GetMask("Ground"));
+        _rayHitGround = Physics2D.Raycast(rb.position, Vector2.down
+            , _rayDist, LayerMask.GetMask("Ground"));
+
         if (rb.velocity.y < -3f && _rayHitGround.collider != null) 
         {
             rb.gravityScale = 0f;
@@ -100,7 +102,8 @@ public class Player : LivingEntity
         }
 
         Debug.DrawRay(rb.position, _myTrans.localScale.x * Vector2.right * _rayDistWall, new Color(0,1,0));
-        _rayHitWall = Physics2D.Raycast(rb.position, _myTrans.localScale.x * Vector2.right, _rayDistWall, LayerMask.GetMask("Wall"));
+        _rayHitWall = Physics2D.Raycast(rb.position, _myTrans.localScale.x * Vector2.right
+            , _rayDistWall, LayerMask.GetMask("Wall"));
 
         if (_rayHitWall.collider != null) { _stopMove = 0f; }
         else _stopMove = 1f;
@@ -123,7 +126,8 @@ public class Player : LivingEntity
         WeaponSwap();
         for(int i = 0; i < (int)WEAPON.MAX; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(i == (int)playerInfo._WeaponState ? true : false);
+            transform.GetChild(i).gameObject.SetActive(
+                i == (int)playerInfo._WeaponState ? true : false);
         }
     }
 
